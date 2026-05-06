@@ -17,13 +17,11 @@
 
 > Hey Christian,
 >
-> Saw the TikTok Auto numbers — <$50K to multi-million in eighteen months, then 23% of total Auto revenue in 2021. That's the book-building Snowball needs someone to do at scale.
+> Saw the TikTok Auto numbers — <$50K to multi-million in eighteen months, 23% of total Auto revenue by 2021. That's the book-building Snowball needs someone to do at scale.
 >
-> I'm working with Max Hertan and Ryan Hashemi on snowball.agency. Ryan was at Jubilee — 14M followers, 5B views — and Snowball is the YouTube content engine he's building for brands. Looking for a Head of Sales who's actually carried a bag at platform scale, not a holdco veteran.
+> I'm working with Max Hertan and Ryan Hashemi on snowball.agency. Ryan was at Jubilee Media — 14M followers, 5B views — and Snowball is the YouTube content engine he's building for brands. Same shape of motion as your TikTok-Auto work, on the agency side.
 >
-> Comp is $200k OTE plus equity that matters. Lower than Spotter; the equity, the autonomy, and the agency-shop work are the trade. Pier Valley tells me you already value the autonomy part — Snowball's the version where the agency is the platform, not the side project.
->
-> Twenty minutes this week or next?
+> Pier Valley tells me you already value the autonomy part. Snowball's the version where the agency is the platform, not the side project. Want to swap notes for twenty minutes this week or next?
 
 ---
 
@@ -38,13 +36,13 @@
 
 > Hey Jack,
 >
-> Read your bio's "remember you will die" sign-off three times before writing this. The voice is exactly the voice we're trying to get into our sales motion at snowball.agency — Max Hertan and Ryan Hashemi, ex-Jubilee, 14M followers, 5B views. We make YouTube content for brands.
+> Read your bio's "remember you will die" sign-off three times before writing this. The voice is exactly what we want in our sales motion at snowball.agency — Max Hertan and Ryan Hashemi, ex-Jubilee Media, 14M followers, 5B views. We make YouTube content for brands.
 >
 > Looking for a Head of Sales. Not a holdco veteran, not a generalist. Someone who's already built an agency from inside and writes about the work. You're the only person on my list who has both.
 >
-> The vertical is the trade — you sell sales services, we sell creator-led content. The motion is identical (premium B2B services to brand-side CMOs). The book and the podcast are why we're writing.
+> The vertical is the trade — you sell sales services, we sell creator-led content. Motion is identical (premium B2B services to brand-side CMOs). The book and the podcast are why we're writing — those are assets that travel, and we want them traveling with us.
 >
-> $200k OTE plus equity. UK-remote works for us. Twenty minutes?
+> UK-remote works on our end. Twenty minutes?
 
 ---
 
@@ -60,19 +58,17 @@
 
 > Hey Nate — saw the $32k-from-one-video thread. That's the engine Snowball builds for brands at 10x scale.
 >
-> We're an ex-Jubilee YouTube agency (Ryan Hashemi, 14M followers, Max Hertan running ops). Looking for a Head of Sales — someone who's already running the play and wants to do it on a brand-side pipeline instead of solo discovery calls.
+> We're an ex-Jubilee YouTube agency (Ryan Hashemi, 14M followers, Max Hertan on ops). Looking for someone to run the sales motion. Same closes you're already running at CCM, on a brand-side pipeline you don't have to source yourself, with a team so you stop doing scripts and edits at 2am.
 >
-> $200k OTE plus equity. You'd own the closes and build the team so you stop carrying delivery yourself.
->
-> 15-min playbook swap? No pitch.
+> 15-min playbook swap? No pitch — just curious how you'd build it.
 
 **Outreach (LinkedIn backup, if X DM doesn't reply in 5 days):**
 
 > Hey Nate,
 >
-> Sent you a DM on X re: your $32k-from-one-video thread. In case it got buried — Snowball.agency (Max Hertan + Ryan Hashemi, ex-Jubilee Media) is hiring a Head of Sales. We make YouTube content for brands at 10x what you're running solo at CCM.
+> Sent you a DM on X re: your $32k-from-one-video thread. In case it got buried — Snowball.agency (Max Hertan + Ryan Hashemi, ex-Jubilee Media, 14M followers, 5B views) makes YouTube content for brands at 10x scale. Looking for someone to run the sales motion.
 >
-> The pitch: $200k OTE plus equity, brand-side pipeline, real team support, you stop carrying delivery yourself. Same closes you're already running, just with the leverage you don't have today.
+> Same closes you're already running at CCM, on a brand-side pipeline you don't have to source yourself, with a team so you stop doing scripts at 2am.
 >
 > Worth a 20-min playbook swap?
 

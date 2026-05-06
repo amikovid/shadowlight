@@ -1,65 +1,64 @@
-# Volley Landing Page Variant
+# Volley + Snowball — Chief Achiever submission
 
-Built for the Max Hertan / Snowball Chief Achiever challenge.
-Single-page, self-contained. No build step. Deploys in 60 seconds.
+48-hour submission for Max Hertan's Chief of Staff / "Chief Achiever" challenge. Two real problems on Max's plate: a marketing build for **Volley** (AI + human language coaching app at $99/mo), and a hiring search for **Snowball Agency**.
 
-## What's here
+## Live build
 
-- `index.html` — the entire landing page (all CSS + JS inline)
-- `vercel.json` — Vercel config (clean URLs)
+**Volley landing page variant:** [shadowlight-xi.vercel.app](https://shadowlight-xi.vercel.app/) — single-file, deployed via Vercel from this repo.
 
-## Deploy to Vercel (recommended)
+## The deliverables
 
-**Option A: Vercel CLI (fastest)**
+Per the [challenge brief](research/04_challenge_brief.md):
 
-```bash
-npm i -g vercel        # if you don't have it
-cd path/to/volley
-vercel                 # answer the prompts, link to your account
-vercel --prod          # ships to production
-```
+### Challenge 1 — Volley
 
-You get a URL like `volley-variant-kovid.vercel.app` in under a minute.
+| | What | Where |
+|---|---|---|
+| **Landing page variant** | Live HTML build, warm-light palette, real photos, rotating language samples (FR / IT / ES), 30-day refund surfaced, all em-dashes scrubbed | [shadowlight-xi.vercel.app](https://shadowlight-xi.vercel.app/) · source: [`index.html`](index.html) |
+| **Rationale (1-page)** | What I changed vs lp3, why, the testable hypothesis, the kill order if it fails | [LP_RATIONALE.md](LP_RATIONALE.md) |
+| **3 Meta ad angles** | Quick Math (CEO + plant), She's a 10 (POV romcom), Tutor Manifesto (Masterclass-format) — full scripts, camera direction, sound, casting | [ADS_CREATIVE_BRIEFS.md](ADS_CREATIVE_BRIEFS.md) |
+| **Testing plan (1-page)** | 14-day, $1,200 budget, format-specific kill criteria, decision tree | [TESTING_PLAN.md](TESTING_PLAN.md) |
 
-**Option B: Drag-and-drop**
+### Challenge 2 — Snowball Head of Sales
 
-1. Go to vercel.com/new
-2. Drag the `volley/` folder onto the page
-3. Click deploy
+| | What | Where |
+|---|---|---|
+| **3 candidates** | Christian Liquigan (Receipts), Jack Frimston (Mindshare), Nate Nkangwen (Native) — LinkedIn, role, why, outreach DM each | [CANDIDATE_SHORTLIST.md](CANDIDATE_SHORTLIST.md) |
+| **Hunting methodology** | Three-lens search frame, paste-ready Sales Nav recipes, niche behavioral signals, fit rubric | [research/07_recruitment_gameplan.md](research/07_recruitment_gameplan.md) |
+| **Full dossiers** | Detailed per-candidate breakdown, the cut decision (why Justin Adelman didn't make the shortlist), Loom narration script | [research/08_candidate_dossiers.md](research/08_candidate_dossiers.md) |
 
-**Option C: GitHub**
+### Challenge 3 — Loom
 
-Push the folder to a public repo, import it in Vercel. Auto-deploys on every push.
+5-minute walkthrough. Linked separately in the email reply.
 
-## Custom domain (optional, free)
+## How decisions got made
 
-Add `volley.kovidbhaduri.com` (or similar) in Vercel project settings → Domains. Point CNAME at `cname.vercel-dns.com`.
+If you want to read deeper into the *why* behind anything in the deliverables:
 
-## What the page is doing
+- [JUSTIFICATION_DOC.md](JUSTIFICATION_DOC.md) — every meaningful LP decision with the citation, the alternative considered, and the A/B test that would falsify it
+- [CLAUDE_DESIGN_BRIEF.md](CLAUDE_DESIGN_BRIEF.md) — the brief that produced the LP build (strategic frame, voice rules, structural decisions)
+- [ADS_BRAINDUMP.md](ADS_BRAINDUMP.md) — the original 10-angle brainstorm before narrowing to 3
 
-- **Hero:** Picks a fight with Duolingo. Strikethrough animation triggers on load.
-- **Proof block:** Animated chat demo of an actual week-1 Spanish conversation. Messages stagger in when scrolled into view.
-- **Why cards:** Three reasons Volley wins. Hover-lift + warm gradient on hover.
-- **Comparison table:** Volley vs Duolingo vs Speak vs Human Tutor. The honest one nobody else puts on their own site.
-- **Guarantee:** 30-day refund promise as a category-defining trust signal.
-- **Testimonial:** Single quote (placeholder — swap in real one).
-- **Final CTA:** Maximalist closing. Price clarity below the fold.
+## How I researched
 
-## What I did NOT include (and why)
+The [`research/`](research/) folder has the full reference set, in the order it was built:
 
-- No "as seen in" logos — Volley doesn't have them, fakes tank trust
-- No feature grid — kills conversion in consumer apps
-- No 3-step "how it works" — overexplaining a product whose pitch is "open the app and talk"
-- No video testimonials — premature for current stage
+| File | What it is |
+|---|---|
+| [`00_index.md`](research/00_index.md) | Folder TOC |
+| [`01_max_dossier.md`](research/01_max_dossier.md) | Max's voice, house style across Snowball/Megaphone/Silvi, counter-positioning instinct |
+| [`02_volley_recon.md`](research/02_volley_recon.md) | Volley product reality, competitive map, real testimonials, what we can/cannot claim |
+| [`03_landing_page_synthesis.md`](research/03_landing_page_synthesis.md) | 2026 LP conversion data + Max house style + category conventions |
+| [`04_challenge_brief.md`](research/04_challenge_brief.md) | Max's verbatim challenge brief |
+| [`05_job_description.md`](research/05_job_description.md) | The JD with Loom-relevant analysis |
+| [`06_meta_ads_research.md`](research/06_meta_ads_research.md) | Competitor ad teardowns (Duolingo, Praktika, Babbel, Jumpspeak, Speak) + Max's brands (Megaphone, Snowball, Silvi) + 2026 Meta best-practice data |
+| [`07_recruitment_gameplan.md`](research/07_recruitment_gameplan.md) | Snowball Head of Sales hunting framework |
+| [`08_candidate_dossiers.md`](research/08_candidate_dossiers.md) | Full per-candidate breakdown |
 
-## Hypotheses being tested
+## Repo notes
 
-The page is built to test five concrete hypotheses against the current `lp3`:
+- Public. Anyone with the URL can read everything.
+- Vercel auto-deploys the LP from `main`.
+- Internal Claude Code settings (`.claude/`) and raw design handoff bundles (`design_pkg/`) are gitignored.
 
-1. A specific, opinionated headline outperforms a generic feature description (vs current "AI Language Tutor")
-2. An animated product demo above the fold lifts time-on-page and CTA clicks
-3. Direct competitive comparison reduces decision paralysis for visitors who arrive from a roundup-article search
-4. A no-friction money-back guarantee meaningfully lifts conversion at the $99 price point
-5. Voice and personality (cheeky, opinionated) outperform neutral, professional copy in this category
-
-Tracking and kill criteria for each are in the testing-plan deliverable.
+— Kovid Bhaduri

@@ -1,6 +1,6 @@
 # Volley landing page variant — rationale (1-page)
 
-> What I changed, why, and what hypothesis I'm testing. Live build at [TBD-vercel-url]. Full decision log in [JUSTIFICATION_DOC.md](JUSTIFICATION_DOC.md).
+> What I changed, why, and what hypothesis I'm testing. Live build at [shadowlight-xi.vercel.app](https://shadowlight-xi.vercel.app/). Full decision log in [JUSTIFICATION_DOC.md](JUSTIFICATION_DOC.md).
 
 ---
 

@@ -12,20 +12,23 @@ Per the [challenge brief](research/04_challenge_brief.md):
 
 ### Challenge 1 — Volley
 
-| | What | Where |
-|---|---|---|
-| **Landing page variant** | Live HTML build, warm-light palette, real photos, rotating language samples (FR / IT / ES), 30-day refund surfaced, all em-dashes scrubbed | [shadowlight-xi.vercel.app](https://shadowlight-xi.vercel.app/) · source: [`index.html`](index.html) |
-| **Rationale (1-page)** | What I changed vs lp3, why, the testable hypothesis, the kill order if it fails | [LP_RATIONALE.md](LP_RATIONALE.md) |
-| **3 Meta ad angles** | Quick Math (CEO + plant), She's a 10 (POV romcom), Tutor Manifesto (Masterclass-format) — full scripts, camera direction, sound, casting | [ADS_CREATIVE_BRIEFS.md](ADS_CREATIVE_BRIEFS.md) |
-| **Testing plan (1-page)** | 14-day, $1,200 budget, format-specific kill criteria, decision tree | [TESTING_PLAN.md](TESTING_PLAN.md) |
+Each deliverable comes in a **short 1-page exec summary** AND a **long source doc** with full receipts. The short docs link out to the long ones for specific quotes / framework details / kill-order nuance.
+
+| | What | Short (exec) | Long (source) |
+|---|---|---|---|
+| **Landing page variant** | Live HTML build, warm-light palette, real photos, rotating language samples (FR / IT / ES), 30-day refund surfaced, all em-dashes scrubbed | [shadowlight-xi.vercel.app](https://shadowlight-xi.vercel.app/) · source: [`index.html`](index.html) | — |
+| **LP rationale** | Wedge derivation, 5-move change list vs lp3, voice discipline rules, hypothesis, kill order, what-I'd-test-next | [LP_RATIONALE.md](LP_RATIONALE.md) | [JUSTIFICATION_DOC.md](JUSTIFICATION_DOC.md) (every sub-decision with citation, alternative, A/B that would falsify) |
+| **3 Meta ad angles** | Quick Math (CEO + plant), She's a 10 (POV romcom), Tutor Manifesto (Masterclass) — see testing plan for the funnel logic | (lives in long) | [ADS_CREATIVE_BRIEFS.md](ADS_CREATIVE_BRIEFS.md) (full scripts, casting, camera, sound, A/B variants, inspirations) |
+| **Testing plan** | Philosophy + 7-day spend table + lead metrics per angle + kill order + decision tree | [TESTING_PLAN.md](TESTING_PLAN.md) | embedded in [ADS_CREATIVE_BRIEFS.md](ADS_CREATIVE_BRIEFS.md) §"How the three angles fit together" |
 
 ### Challenge 2 — Snowball Head of Sales
 
 | | What | Where |
 |---|---|---|
-| **3 candidates** | Christian Liquigan (Receipts), Jack Frimston (Mindshare), Nate Nkangwen (Native) — LinkedIn, role, why, outreach DM each | [CANDIDATE_SHORTLIST.md](CANDIDATE_SHORTLIST.md) |
+| **3 candidates (1-page exec)** | Christian Liquigan (Receipts), Jack Frimston (Mindshare), Nate Nkangwen (Native) — framework + 1 paragraph each | [CANDIDATE_SHORTLIST.md](CANDIDATE_SHORTLIST.md) |
+| **Outreach DMs** | The actual messages I'd send each candidate (LinkedIn for Christian + Jack, X DM for Nate) | [OUTREACH.md](OUTREACH.md) |
 | **Hunting methodology** | Three-lens search frame, paste-ready Sales Nav recipes, niche behavioral signals, fit rubric | [research/07_recruitment_gameplan.md](research/07_recruitment_gameplan.md) |
-| **Full dossiers** | Detailed per-candidate breakdown, the cut decision (why Justin Adelman didn't make the shortlist), Loom narration script | [research/08_candidate_dossiers.md](research/08_candidate_dossiers.md) |
+| **Full dossiers (long)** | Detailed per-candidate breakdown, career arcs, rubric scores, risks with mitigation, the cut decision (why Justin Adelman didn't make the shortlist), Loom narration script | [research/08_candidate_dossiers.md](research/08_candidate_dossiers.md) |
 
 ### Challenge 3 — Loom
 

@@ -1,0 +1,1805 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pitch for Max · Volley + Snowball · print</title>
+<meta name="description" content="48 hours of work on the two problems Max put in front of me. The deck is the receipts." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #F5F0E5;
+  --bg-2: #EFE8D8;
+  --surface: #FFFFFF;
+  --ink: #1A140F;
+  --ink-2: #6B5E4D;
+  --hairline: rgba(26, 20, 15, 0.12);
+  --hairline-2: rgba(26, 20, 15, 0.06);
+  --accent: #E04E2C;
+  --tutor: #3F7A5C;
+
+  --display: "Fraunces", Georgia, serif;
+  --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --col: min(1180px, 92vw);
+  --col-narrow: min(820px, 92vw);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  font-feature-settings: "ss01", "ss02", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--hairline); transition: border-color .2s, color .2s; }
+a:hover { border-color: var(--accent); color: var(--accent); }
+a.bare { border: none; }
+a.bare:hover { color: var(--accent); }
+
+em { font-family: var(--display); font-style: italic; font-weight: 500; color: var(--accent); }
+
+/* ===================== shell ===================== */
+
+.wrap { width: var(--col); margin: 0 auto; }
+.wrap--narrow { width: var(--col-narrow); margin: 0 auto; }
+
+section.s {
+  padding: 96px 0 96px;
+  border-top: 1px solid var(--hairline-2);
+  position: relative;
+}
+section.s:first-of-type { border-top: none; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: lowercase;
+  color: var(--ink-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: var(--ink-2);
+}
+
+h1.display {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(44px, 6.6vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+  text-wrap: balance;
+}
+h2.display {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(36px, 4.8vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+  font-variation-settings: "opsz" 144;
+  text-wrap: balance;
+}
+h3.display {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+p.lede {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+p { text-wrap: pretty; }
+p + p { margin-top: 1em; }
+
+/* ===================== nav ===================== */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hairline-2);
+}
+.topbar__inner {
+  width: var(--col);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  gap: 24px;
+}
+.topbar__brand {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  color: var(--ink);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar__brand .dot {
+  width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+}
+.topbar__nav {
+  display: flex;
+  gap: 22px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+.topbar__nav a { border: none; }
+.topbar__nav a:hover { color: var(--accent); }
+@media (max-width: 820px) {
+  .topbar__nav { display: none; }
+}
+
+/* ===================== greeting ===================== */
+
+.hero {
+  padding: 120px 0 110px;
+}
+.hero h1 { margin-top: 8px; }
+.hero h1 .accent { color: var(--accent); font-style: italic; }
+.hero__lede {
+  margin-top: 36px;
+  max-width: 760px;
+}
+.hero__meta {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 28px;
+}
+.hero__meta .cell .k {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  display: block;
+  margin-bottom: 8px;
+}
+.hero__meta .cell .v {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 500;
+}
+@media (max-width: 820px) {
+  .hero__meta { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===================== navigator ===================== */
+
+.navigator {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+}
+.navigator a {
+  background: var(--bg);
+  padding: 22px 24px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background .2s, color .2s;
+}
+.navigator a:hover { background: var(--bg-2); color: var(--ink); }
+.navigator a:hover .nlbl { color: var(--accent); }
+.navigator .nnum {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+}
+.navigator .nlbl {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.25;
+  transition: color .2s;
+}
+@media (max-width: 820px) {
+  .navigator { grid-template-columns: 1fr; }
+}
+
+/* ===================== generic blocks ===================== */
+
+.further {
+  margin-top: 56px;
+  padding-top: 18px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+.further::before { content: "→ "; color: var(--accent); }
+.further a { color: var(--ink-2); border-bottom: 1px dotted var(--hairline); }
+.further a:hover { color: var(--accent); border-color: var(--accent); }
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  margin-top: 24px;
+}
+
+.pull {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+.pull em { color: var(--accent); }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+@media (max-width: 820px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 820px) { .grid-3 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  padding: 32px;
+}
+.card h4 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.card .small {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  text-transform: lowercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* ===================== sec 2: setup ===================== */
+
+.setup__list {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+.setup__item {
+  padding: 36px 32px 36px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.setup__item + .setup__item { padding-left: 32px; padding-right: 0; border-left: 1px solid var(--hairline); }
+.setup__item h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.setup__item .quote {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--ink-2);
+  margin-top: 14px;
+}
+@media (max-width: 820px) {
+  .setup__list { grid-template-columns: 1fr; }
+  .setup__item + .setup__item { padding-left: 0; border-left: none; }
+}
+
+/* ===================== sec 3: wedge (dark) ===================== */
+
+.wedge {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 130px 0 110px;
+  margin-top: 0;
+  border-top: none;
+}
+.wedge .eyebrow { color: rgba(245, 240, 229, 0.6); }
+.wedge .eyebrow::before { background: rgba(245, 240, 229, 0.5); }
+.wedge h2.display { color: var(--bg); }
+.wedge h2 .accent { color: var(--accent); font-style: italic; }
+.wedge .further { color: rgba(245, 240, 229, 0.55); border-color: rgba(245, 240, 229, 0.18); }
+.wedge .further a { color: rgba(245, 240, 229, 0.7); border-color: rgba(245, 240, 229, 0.18); }
+
+.wedge__compete {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(245, 240, 229, 0.18);
+  border-bottom: 1px solid rgba(245, 240, 229, 0.18);
+}
+.wedge__compete .col {
+  padding: 28px 24px;
+  border-right: 1px solid rgba(245, 240, 229, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.wedge__compete .col:last-child { border-right: none; }
+.wedge__compete .name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 22px;
+  text-decoration: line-through;
+  text-decoration-color: rgba(245, 240, 229, 0.5);
+  text-decoration-thickness: 1.5px;
+}
+.wedge__compete .col.us .name {
+  text-decoration: none;
+  color: var(--accent);
+  font-style: italic;
+}
+.wedge__compete .owns {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(245, 240, 229, 0.55);
+  text-transform: lowercase;
+}
+.wedge__compete .claim {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.4;
+  color: rgba(245, 240, 229, 0.9);
+}
+@media (max-width: 820px) {
+  .wedge__compete { grid-template-columns: 1fr 1fr; }
+  .wedge__compete .col { border-bottom: 1px solid rgba(245, 240, 229, 0.12); }
+}
+
+/* ===================== sec 4: the page ===================== */
+
+.lp-frame {
+  margin-top: 56px;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  position: relative;
+}
+.lp-frame__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+.lp-frame__bar .dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.lp-frame__bar .dots i {
+  display: block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--hairline);
+  border: none;
+}
+.lp-frame__bar a { border: none; }
+.lp-frame__bar a:hover { color: var(--accent); }
+.lp-frame iframe {
+  width: 100%;
+  height: 720px;
+  border: none;
+  display: block;
+  background: #F5F0E5;
+}
+.lp-frame__cta {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 12px 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  border: none;
+  text-transform: lowercase;
+}
+.lp-frame__cta:hover { color: var(--bg); background: #c63d1e; }
+
+.moves {
+  margin-top: 64px;
+  border-top: 1px solid var(--ink);
+}
+.moves__row {
+  display: grid;
+  grid-template-columns: 60px 1.1fr 1.4fr 1.4fr;
+  border-bottom: 1px solid var(--hairline);
+  padding: 24px 0;
+  gap: 24px;
+  align-items: start;
+}
+.moves__row.head {
+  border-bottom: 1px solid var(--ink);
+  padding: 14px 0;
+}
+.moves__row.head span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  text-transform: lowercase;
+}
+.moves__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.moves__label {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.2;
+}
+.moves__from {
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.45;
+}
+.moves__to {
+  font-size: 15px;
+  line-height: 1.45;
+}
+.moves__to strong { font-weight: 600; color: var(--ink); }
+.moves__why {
+  grid-column: 2 / -1;
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+@media (max-width: 820px) {
+  .moves__row { grid-template-columns: 40px 1fr; }
+  .moves__from, .moves__to { grid-column: 2 / -1; }
+  .moves__row.head { display: none; }
+}
+
+/* ===================== sec 5: ads ===================== */
+
+.angles {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--hairline);
+  background: var(--hairline);
+}
+.angle {
+  background: var(--surface);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.angle__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.angle__name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.angle__sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.angle__sub b { color: var(--ink); font-weight: 500; }
+.angle__sub i { font-style: normal; opacity: 0.6; }
+.angle__story {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  border-top: 1px solid var(--hairline);
+  padding-top: 18px;
+}
+.angle__story em {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+.angle__script {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  transition: background .2s, color .2s;
+}
+.angle__script:hover { background: var(--accent); color: var(--bg); }
+.angle__script .lhs { display: flex; flex-direction: column; gap: 4px; }
+.angle__script .lhs b { font-family: var(--display); font-style: italic; font-size: 18px; letter-spacing: -0.01em; color: var(--bg); font-weight: 500; text-transform: none; }
+.angle__script .arrow { font-size: 18px; }
+.angle__inspo {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.angle__inspo a { display: inline-flex; align-items: center; gap: 8px; border: none; color: var(--ink-2); }
+.angle__inspo a::before {
+  content: "▶";
+  color: var(--accent);
+  font-size: 9px;
+}
+.angle__inspo a:hover { color: var(--accent); }
+@media (max-width: 980px) {
+  .angles { grid-template-columns: 1fr; }
+}
+
+/* ===================== sec 6: testing ===================== */
+
+.spend {
+  margin-top: 48px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  font-size: 14px;
+}
+.spend__row {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr 1fr 90px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.spend__row:last-child { border-bottom: none; }
+.spend__row.head {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  text-transform: lowercase;
+}
+.spend__row.total {
+  font-weight: 600;
+  border-top: 1px solid var(--ink);
+  border-bottom: none;
+}
+.spend__row .day {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+}
+.spend__row .num {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+}
+.spend__row .num.muted { color: rgba(26, 20, 15, 0.4); }
+.spend__row .total-num {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 500;
+  text-align: right;
+}
+@media (max-width: 820px) {
+  .spend__row { grid-template-columns: 60px 1fr 1fr 1fr 70px; font-size: 12px; }
+}
+
+.kill {
+  margin-top: 64px;
+}
+.kill__list {
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+}
+.kill__item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+}
+.kill__item:last-child { border-bottom: none; }
+.kill__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.kill__text { font-size: 15.5px; line-height: 1.5; }
+.kill__text b { font-weight: 600; }
+
+.forced {
+  margin-top: 56px;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 36px 40px;
+}
+.forced .lbl {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  color: rgba(245, 240, 229, 0.55);
+  text-transform: lowercase;
+  margin-bottom: 14px;
+}
+.forced .quote {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.forced .quote em { color: var(--accent); }
+
+/* ===================== sec 7: hunt ===================== */
+
+.bets {
+  margin-top: 56px;
+  border-top: 1px solid var(--ink);
+}
+.bet {
+  display: grid;
+  grid-template-columns: 230px 1fr 90px;
+  gap: 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: start;
+}
+.bet.cut { opacity: 0.55; }
+.bet.cut .bet__name { text-decoration: line-through; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+.bet__name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.15;
+}
+.bet__hyp { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.bet__hyp b { color: var(--ink); font-weight: 500; }
+.bet__pick {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-align: right;
+  color: var(--ink-2);
+  text-transform: lowercase;
+}
+.bet__pick b { color: var(--accent); display: block; margin-bottom: 4px; font-weight: 500; }
+@media (max-width: 820px) {
+  .bet { grid-template-columns: 1fr; gap: 8px; }
+  .bet__pick { text-align: left; }
+}
+
+.signals {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+.signal {
+  padding: 24px 22px 24px 0;
+  border-right: 1px solid var(--hairline);
+}
+.signal:nth-child(4n) { border-right: none; padding-right: 0; }
+.signal:nth-child(n+2) { padding-left: 22px; }
+.signal__num {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 38px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.signal__lbl {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  text-transform: lowercase;
+  margin-bottom: 8px;
+}
+.signal__txt { font-size: 14.5px; line-height: 1.5; }
+@media (max-width: 820px) {
+  .signals { grid-template-columns: 1fr 1fr; }
+  .signal { border-right: none; border-bottom: 1px solid var(--hairline); padding: 22px 0; }
+  .signal:nth-child(2n) { padding-left: 0; }
+  .signal:nth-child(n+2) { padding-left: 0; }
+}
+
+/* ===================== sec 8: candidates ===================== */
+
+.cand {
+  margin-top: 0;
+  border-top: 1px solid var(--ink);
+}
+.cand__row {
+  display: grid;
+  grid-template-columns: 90px 1.6fr 2.4fr;
+  gap: 32px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.cand__row:last-child { border-bottom: 1px solid var(--ink); }
+.cand__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+}
+.cand__num b {
+  display: block;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 38px;
+  color: var(--accent);
+  line-height: 1;
+  margin-top: 6px;
+}
+.cand__id .name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.012em;
+}
+.cand__id .name em {
+  display: block;
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-family: var(--mono);
+  color: var(--ink-2);
+  letter-spacing: 0.06em;
+  font-style: normal;
+  margin-top: 14px;
+  text-transform: lowercase;
+}
+.cand__id .role {
+  font-size: 15px;
+  margin-top: 18px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.cand__id .role b { color: var(--ink); font-weight: 500; }
+.cand__id .links {
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cand__id .links a { border-bottom: 1px dotted var(--hairline); }
+
+.cand__detail .receipt {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(20px, 1.9vw, 26px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  border-left: 2px solid var(--accent);
+  padding: 4px 0 4px 22px;
+  margin-bottom: 24px;
+}
+.cand__detail .receipt em { color: var(--accent); }
+.cand__detail .why {
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.cand__detail .why + .why { margin-top: 10px; }
+.cand__detail .dm {
+  margin-top: 24px;
+  padding: 18px 22px;
+  background: var(--bg-2);
+  border-left: 2px solid var(--ink-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.cand__detail .dm b { color: var(--ink); font-weight: 500; }
+@media (max-width: 820px) {
+  .cand__row { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }
+}
+
+/* ===================== sec 9: cut ===================== */
+
+.cut-defense {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--ink);
+}
+.cut-defense__row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 28px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+}
+.cut-defense__num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--accent);
+  line-height: 1;
+}
+.cut-defense__txt { font-size: 16px; line-height: 1.55; }
+.cut-defense__txt b { font-weight: 600; }
+
+/* ===================== sec 10: loom ===================== */
+
+.loom {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 110px 0;
+}
+.loom .eyebrow { color: rgba(245, 240, 229, 0.6); }
+.loom .eyebrow::before { background: rgba(245, 240, 229, 0.5); }
+.loom h2.display { color: var(--bg); }
+.loom h2 em { color: var(--accent); }
+.loom__grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 820px) { .loom__grid { grid-template-columns: 1fr; } }
+.loom__player {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(245, 240, 229, 0.18);
+  background: linear-gradient(135deg, #2a221b 0%, #1a140f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.loom__player::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(245, 240, 229, 0.08);
+}
+.loom__play {
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.loom__play::after {
+  content: "";
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 14px 0 14px 22px;
+  border-color: transparent transparent transparent var(--bg);
+  margin-left: 6px;
+}
+.loom__meta {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(245, 240, 229, 0.6);
+}
+.loom__beats { display: grid; gap: 18px; }
+.loom__beat {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(245, 240, 229, 0.18);
+}
+.loom__beat:last-child { border-bottom: none; }
+.loom__beat .n {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(245, 240, 229, 0.5);
+  letter-spacing: 0.06em;
+}
+.loom__beat .t { font-size: 15px; line-height: 1.5; color: rgba(245, 240, 229, 0.92); }
+.loom__beat .t b { color: var(--accent); font-weight: 500; }
+
+/* ===================== sec 11: day 1 ===================== */
+
+.day1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--ink);
+}
+.day1__row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 36px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: start;
+}
+.day1__row:last-child { border-bottom: 1px solid var(--ink); }
+.day1__lbl {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  text-transform: lowercase;
+  padding-top: 6px;
+}
+.day1__txt {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+.day1__txt em { color: var(--accent); }
+@media (max-width: 820px) {
+  .day1__row { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* ===================== sec 12: appendix ===================== */
+
+.appx {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+}
+.appx__group h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  text-transform: lowercase;
+  margin-bottom: 16px;
+}
+.appx__group ul { list-style: none; }
+.appx__group li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 14.5px;
+}
+.appx__group li a { border: none; }
+.appx__group li a::before { content: "→ "; color: var(--accent); margin-right: 4px; font-family: var(--mono); }
+.appx__group li a:hover { color: var(--accent); }
+@media (max-width: 820px) { .appx { grid-template-columns: 1fr; } }
+
+/* ===================== footer ===================== */
+
+footer.foot {
+  padding: 80px 0 60px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+footer.foot .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+footer.foot a { border: none; }
+footer.foot a:hover { color: var(--accent); }
+
+/* ===================== reveal ===================== */
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .9s ease, transform .9s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* print */
+@page { size: A4 portrait; margin: 12mm; }
+
+@media print {
+  :root { --col: 100%; --col-narrow: 100%; }
+  html { scroll-behavior: auto; }
+  body {
+    background: var(--bg) !important;
+    color: var(--ink) !important;
+    font-size: 11.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .topbar, .lp-frame__cta, .navigator { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  a { color: var(--ink) !important; border: none !important; }
+  a[href]::after { content: ""; }
+
+  .wrap, .wrap--narrow { width: 100% !important; }
+
+  section.s {
+    padding: 0 0 18pt 0 !important;
+    margin: 0 0 18pt 0 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  section.s + section.s { break-before: page; page-break-before: always; }
+
+  /* dark sections keep their tone in print */
+  .wedge, .loom {
+    background: var(--ink) !important;
+    color: var(--bg) !important;
+    padding: 24pt 18pt !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .wedge h2.display, .loom h2.display { color: var(--bg) !important; }
+
+  /* tighten oversized type for print */
+  h1.display { font-size: 34pt !important; line-height: 1 !important; }
+  h2.display { font-size: 24pt !important; line-height: 1.05 !important; }
+  h3.display { font-size: 16pt !important; }
+  p.lede   { font-size: 13pt !important; line-height: 1.4 !important; }
+  .pull    { font-size: 18pt !important; }
+  .day1__txt, .forced .quote { font-size: 14pt !important; }
+
+  .hero { padding: 18pt 0 18pt !important; }
+  .hero__meta { margin-top: 24pt !important; padding-top: 14pt !important; gap: 14pt !important; }
+
+  /* live LP iframe doesn't print well — replace with a labeled placeholder */
+  .lp-frame iframe { display: none !important; }
+  .lp-frame { background: var(--bg-2) !important; }
+  .lp-frame::after {
+    content: "Live build: shadowlight-xi.vercel.app — open in a browser to view interactively.";
+    display: block;
+    padding: 36pt 24pt;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--ink);
+    text-align: center;
+  }
+
+  /* loom player placeholder */
+  .loom__player { aspect-ratio: auto !important; min-height: 180pt; }
+
+  /* keep grids tidy */
+  .grid-2, .grid-3, .angles, .signals, .appx, .hero__meta, .navigator { break-inside: avoid; }
+  .moves__row, .cand__row, .bet, .kill__item, .day1__row, .cut-defense__row, .spend__row, .setup__item { break-inside: avoid; page-break-inside: avoid; }
+
+  /* ensure card backgrounds carry through */
+  .card, .angle, .forced, .lp-frame, .dm, .day1, .spend, .moves {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  footer.foot { padding: 18pt 0 !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== topbar ===================== -->
+<header class="topbar">
+  <div class="topbar__inner">
+    <a href="#top" class="topbar__brand"><span class="dot"></span> pitch · for max · 48hr</a>
+    <nav class="topbar__nav">
+      <a href="#wedge">volley wedge</a>
+      <a href="#page">the page</a>
+      <a href="#funnel">3 ad angles</a>
+      <a href="#hunt">snowball hunt</a>
+      <a href="#three">the three</a>
+      <a href="#loom">loom</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ===================== 1. greeting ===================== -->
+<section class="s hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">01 · greeting</span>
+    <h1 class="display reveal">For Max, with respect.<br />
+      48 hours of work on the two problems <span class="accent">you put in front of me.</span></h1>
+
+    <p class="lede hero__lede reveal">
+      Below is the executive narrative. How I thought about Volley, how I hunted for Snowball, what I shipped, and the calls I made along the way. Every section is short by design. Every claim links back to the underlying research. If you only have five minutes, the Loom is at the bottom. The deck is the receipts.
+    </p>
+
+    <div class="hero__meta reveal">
+      <div class="cell"><span class="k">from</span><span class="v">Kovid Bhaduri</span></div>
+      <div class="cell"><span class="k">to</span><span class="v">Max Hertan</span></div>
+      <div class="cell"><span class="k">re</span><span class="v">Chief Achiever</span></div>
+      <div class="cell"><span class="k">read time</span><span class="v">~9 minutes</span></div>
+    </div>
+
+    <nav class="navigator reveal" aria-label="Section navigator">
+      <a href="#setup"><span class="nnum">02</span><span class="nlbl">The setup</span></a>
+      <a href="#wedge"><span class="nnum">03</span><span class="nlbl">Volley · the wedge</span></a>
+      <a href="#page"><span class="nnum">04</span><span class="nlbl">Volley · the page</span></a>
+      <a href="#funnel"><span class="nnum">05</span><span class="nlbl">Volley · 3 ad angles</span></a>
+      <a href="#testing"><span class="nnum">06</span><span class="nlbl">Volley · testing plan</span></a>
+      <a href="#hunt"><span class="nnum">07</span><span class="nlbl">Snowball · how I hunted</span></a>
+      <a href="#three"><span class="nnum">08</span><span class="nlbl">Snowball · the three</span></a>
+      <a href="#cut"><span class="nnum">09</span><span class="nlbl">Snowball · the cut</span></a>
+      <a href="#loom"><span class="nnum">10</span><span class="nlbl">The Loom</span></a>
+      <a href="#day1"><span class="nnum">11</span><span class="nlbl">What I'd do on Day 1</span></a>
+      <a href="#appendix"><span class="nnum">12</span><span class="nlbl">Further reading</span></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ===================== 2. setup ===================== -->
+<section class="s" id="setup">
+  <div class="wrap">
+    <span class="eyebrow reveal">02 · the setup</span>
+    <h2 class="display reveal">Two problems. One marketing build, one hiring search. <em>Both real.</em></h2>
+
+    <div class="setup__list reveal">
+      <div class="setup__item">
+        <h3>Volley</h3>
+        <p>AI plus human language coaching app at $99 a month. Build a landing page variant, three Meta ad angles, and a testing plan.</p>
+        <p class="quote">"Pretend I just handed you the account."</p>
+      </div>
+      <div class="setup__item">
+        <h3>Snowball</h3>
+        <p>Find Snowball Agency a Head of Sales. Three candidates on LinkedIn with the outreach you'd actually send.</p>
+        <p class="quote">"Don't send me obvious org-chart picks."</p>
+      </div>
+    </div>
+
+    <p class="lede reveal" style="margin-top: 48px; max-width: 820px;">
+      Plus the meta-deliverable: the five-minute Loom you said is <em>where this is won or lost.</em> The deck is the receipts. The Loom is the thinking. Two artifacts, on purpose.
+    </p>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/research/04_challenge_brief.md" target="_blank" rel="noopener">research/04_challenge_brief.md</a></p>
+  </div>
+</section>
+
+<!-- ===================== 3. volley wedge (dark) ===================== -->
+<section class="s wedge" id="wedge">
+  <div class="wrap">
+    <span class="eyebrow reveal">03 · volley · the wedge</span>
+    <h2 class="display reveal">You don't need another language app.<br />You need <span class="accent">a coach who notices.</span></h2>
+
+    <p class="lede reveal" style="margin-top: 36px; color: rgba(245, 240, 229, 0.85); max-width: 760px;">
+      Volley's product is a real human. The live page reads like another AI app. The variant is what fixing that looks like. Counter-positioning by category, not by competitor. <em>Pick a fight, don't list features.</em>
+    </p>
+
+    <div class="wedge__compete reveal">
+      <div class="col"><span class="name">Speak</span><span class="owns">owns</span><span class="claim">"speak out loud."</span></div>
+      <div class="col"><span class="name">Langua</span><span class="owns">owns</span><span class="claim">"realistic AI voices."</span></div>
+      <div class="col"><span class="name">Praktika</span><span class="owns">owns</span><span class="claim">"private-tutor feel."</span></div>
+      <div class="col"><span class="name">Duolingo</span><span class="owns">owns</span><span class="claim">"streaks. habit. green owl."</span></div>
+    </div>
+
+    <div class="wedge__compete reveal" style="margin-top: -1px; grid-template-columns: 1fr;">
+      <div class="col us">
+        <span class="name">Volley</span>
+        <span class="owns">claims, finally</span>
+        <span class="claim" style="font-family: var(--display); font-size: 20px; line-height: 1.3; max-width: 720px;">accountability. A real human noticing your week, between unlimited AI practice. Nobody else is fighting for this.</span>
+      </div>
+    </div>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/LP_RATIONALE.md" target="_blank" rel="noopener">LP_RATIONALE.md</a> · <a href="https://github.com/amikovid/shadowlight/blob/main/research/02_volley_recon.md" target="_blank" rel="noopener">research/02_volley_recon.md</a></p>
+  </div>
+</section>
+
+<!-- ===================== 4. the page ===================== -->
+<section class="s" id="page">
+  <div class="wrap">
+    <span class="eyebrow reveal">04 · volley · the page</span>
+    <h2 class="display reveal">Five concrete moves vs lp3.<br />Each one has a published study, or a Max house-style precedent, behind it.</h2>
+
+    <div class="lp-frame reveal">
+      <div class="lp-frame__bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span>shadowlight-xi.vercel.app</span>
+        <a href="https://shadowlight-xi.vercel.app/" target="_blank" rel="noopener">open in new tab ↗</a>
+      </div>
+      <iframe src="https://shadowlight-xi.vercel.app/" title="Volley landing page variant, live build" loading="lazy"></iframe>
+      <a class="lp-frame__cta" href="https://shadowlight-xi.vercel.app/" target="_blank" rel="noopener">live build · click to open</a>
+    </div>
+
+    <div class="moves reveal">
+      <div class="moves__row head">
+        <span></span><span>move</span><span>lp3</span><span>variant</span>
+      </div>
+
+      <div class="moves__row">
+        <span class="moves__num">01</span>
+        <span class="moves__label">Lead with the wedge, not the feature</span>
+        <span class="moves__from">"Learn a language with a private tutor and daily AI practice."</span>
+        <span class="moves__to"><strong>"You don't need another language app. You need a coach who notices."</strong></span>
+        <span class="moves__why">why · counter-positioning beats descriptive copy. Max's own brands do this consistently. (Snowball: "we don't follow YouTube best practices. we create them.")</span>
+      </div>
+
+      <div class="moves__row">
+        <span class="moves__num">02</span>
+        <span class="moves__label">Show the hybrid in the hero, not in copy</span>
+        <span class="moves__from">Single tutor headshot.</span>
+        <span class="moves__to"><strong>Split: AI voice-chat panel left, tutor card with weekly-review fragment right.</strong></span>
+        <span class="moves__why">why · passes the 5-second test by structure. Viewer sees "AI plus human" without reading.</span>
+      </div>
+
+      <div class="moves__row">
+        <span class="moves__num">03</span>
+        <span class="moves__label">Rotate the language sample</span>
+        <span class="moves__from">French only, hardcoded.</span>
+        <span class="moves__to"><strong>JS rotates French / Italian / Spanish on each load.</strong></span>
+        <span class="moves__why">why · Volley serves multiple languages. French-only friction loses non-French learners on cold traffic.</span>
+      </div>
+
+      <div class="moves__row">
+        <span class="moves__num">04</span>
+        <span class="moves__label">Single CTA verb</span>
+        <span class="moves__from">"Get my plan."</span>
+        <span class="moves__to"><strong>"Take the placement test."</strong> One verb across nav, hero, sticky, final.</span>
+        <span class="moves__why">why · lower-commitment ask. Standard playbook for premium products with a price barrier (Noom, Future).</span>
+      </div>
+
+      <div class="moves__row">
+        <span class="moves__num">05</span>
+        <span class="moves__label">Surface the 30-day refund</span>
+        <span class="moves__from">Not on lp3.</span>
+        <span class="moves__to"><strong>Comparison foot. Sticky bar. FAQ #6.</strong></span>
+        <span class="moves__why">why · at $99 the buyer's biggest objection is risk. The page should answer it before pricing.</span>
+      </div>
+    </div>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/JUSTIFICATION_DOC.md" target="_blank" rel="noopener">JUSTIFICATION_DOC.md</a> · the full decision log, every alternative, every A/B that would falsify it</p>
+  </div>
+</section>
+
+<!-- ===================== 5. funnel · 3 ads ===================== -->
+<section class="s" id="funnel">
+  <div class="wrap">
+    <span class="eyebrow reveal">05 · volley · 3 ad angles</span>
+    <h2 class="display reveal">Three angles. Three funnel stages.<br /><em>Three creative grammars.</em></h2>
+
+    <p class="lede reveal" style="margin-top: 28px; max-width: 820px;">
+      Three angles, not five. Find the one winner fast, pour gas. Don't try to maximize coverage, try to compound the win. Praktika went from $1M to $12M ARR in 30 days off <em>one</em> UGC video that hit 32M views. Variant-volume isn't the move. Format-fit-against-funnel-stage is the move.
+    </p>
+
+    <div class="angles reveal">
+
+      <article class="angle">
+        <span class="angle__num">angle 01 · mid-funnel + viral</span>
+        <h3 class="angle__name">Quick Math</h3>
+        <p class="angle__sub">
+          <span><b>format</b> founder direct-to-camera, plant tipping in background</span>
+          <span><b>length</b> 0:17</span>
+          <span><b>cost</b> $0–$100</span>
+        </p>
+        <p class="angle__story">
+          A founder does $99 price math direct to camera while a tall houseplant slowly tips behind them. Lands at <em>"Do better."</em> Plant falls on cue. Single take. The math is the substance, the gag is the pattern.
+        </p>
+        <p class="angle__story" style="border-top: none; padding-top: 0;">
+          Reads as UGC, not creative. Founder hook earns the dunk on the category. Lead metric is <em>save rate</em>, not CTR. Viewers scrub back to confirm what they saw.
+        </p>
+        <a class="angle__script" href="https://github.com/amikovid/shadowlight/blob/main/ADS_CREATIVE_BRIEFS.md#angle-1--quick-math-ceo--plant" target="_blank" rel="noopener">
+          <span class="lhs"><span>read the full script</span><b>Quick Math, 0:17</b></span>
+          <span class="arrow">↗</span>
+        </a>
+        <div class="angle__inspo">
+          <span style="opacity: 0.7;">inspirations</span>
+          <a href="https://www.tiktok.com/@cliffweitzman" target="_blank" rel="noopener">Cliff Weitzman / Speechify TikToks</a>
+          <a href="https://www.google.com/search?q=deadpan+founder+direct+to+camera+tiktok" target="_blank" rel="noopener">deadpan-founder direct-to-camera</a>
+        </div>
+      </article>
+
+      <article class="angle">
+        <span class="angle__num">angle 02 · top-of-funnel + viral</span>
+        <h3 class="angle__name">She's a 10</h3>
+        <p class="angle__sub">
+          <span><b>format</b> POV, motion-pause edits, jazz crescendo</span>
+          <span><b>length</b> 0:20</span>
+          <span><b>cost</b> $200–$500</span>
+        </p>
+        <p class="angle__story">
+          POV romcom with mid-frame freezes on caption reveals, jazz building under. <em>"She's a 10. Her parents don't speak English. Don't fumble this, king."</em> Volley reveal is brief. Closer is the future mother-in-law squeezing his hand at dinner in Italian.
+        </p>
+        <p class="angle__story" style="border-top: none; padding-top: 0;">
+          Format is canonical TikTok, stake is concrete (you can't talk to her parents), payoff is emotional. Judged on shares first, comments second, CTR third.
+        </p>
+        <a class="angle__script" href="https://github.com/amikovid/shadowlight/blob/main/ADS_CREATIVE_BRIEFS.md#angle-2--shes-a-10-motion-pause-pov-romcom" target="_blank" rel="noopener">
+          <span class="lhs"><span>read the full script</span><b>She's a 10, 0:20</b></span>
+          <span class="arrow">↗</span>
+        </a>
+        <div class="angle__inspo">
+          <span style="opacity: 0.7;">inspirations</span>
+          <a href="https://www.youtube.com/results?search_query=cluely+roy+lee+pov" target="_blank" rel="noopener">Roy Lee / Cluely viral POV format</a>
+          <a href="https://www.youtube.com/results?search_query=past+lives+trailer" target="_blank" rel="noopener">Past Lives / La La Land trailer pacing</a>
+        </div>
+      </article>
+
+      <article class="angle">
+        <span class="angle__num">angle 03 · cold acquisition · brand asset</span>
+        <h3 class="angle__name">Tutor Manifesto</h3>
+        <p class="angle__sub">
+          <span><b>format</b> senior tutor, masterclass-cinematic, piano underscore</span>
+          <span><b>length</b> 0:46</span>
+          <span><b>cost</b> $500–$1,500</span>
+        </p>
+        <p class="angle__story">
+          A late-50s professorial tutor delivers a conversational monologue on what every language app gets wrong. Sarah (past tense) is the proof. <em>"Every student is hiding a different thing. The work is finding the hiding place."</em>
+        </p>
+        <p class="angle__story" style="border-top: none; padding-top: 0;">
+          Authority-coded talent. Volley's unfair advantage: real senior tutors instead of hired actors. Pricing never appears in her mouth. Only on the brand card. Lead metric is 50% completion.
+        </p>
+        <a class="angle__script" href="https://github.com/amikovid/shadowlight/blob/main/ADS_CREATIVE_BRIEFS.md#angle-3--tutor-manifesto-masterclass-format-conversational" target="_blank" rel="noopener">
+          <span class="lhs"><span>read the full script</span><b>Tutor Manifesto, 0:46</b></span>
+          <span class="arrow">↗</span>
+        </a>
+        <div class="angle__inspo">
+          <span style="opacity: 0.7;">inspirations</span>
+          <a href="https://www.youtube.com/results?search_query=aaron+sorkin+masterclass+trailer" target="_blank" rel="noopener">Aaron Sorkin Masterclass trailer</a>
+          <a href="https://www.youtube.com/results?search_query=nyt+modern+love+video" target="_blank" rel="noopener">NYT Modern Love video pieces</a>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/ADS_CREATIVE_BRIEFS.md" target="_blank" rel="noopener">ADS_CREATIVE_BRIEFS.md</a> · full scripts, casting, sound · <a href="https://github.com/amikovid/shadowlight/blob/main/ADS_BRAINDUMP.md" target="_blank" rel="noopener">ADS_BRAINDUMP.md</a> · the 10-angle brainstorm · <a href="https://github.com/amikovid/shadowlight/blob/main/research/06_meta_ads_research.md" target="_blank" rel="noopener">research/06_meta_ads_research.md</a> · competitor teardowns</p>
+  </div>
+</section>
+
+<!-- ===================== 6. testing plan ===================== -->
+<section class="s" id="testing">
+  <div class="wrap">
+    <span class="eyebrow reveal">06 · volley · testing plan</span>
+    <h2 class="display reveal">$1,200 across seven days. <em>Different lead metric per angle.</em></h2>
+
+    <p class="lede reveal" style="margin-top: 24px; max-width: 800px;">
+      Save rate for Quick Math. Share rate for She's a 10. 50% completion for Tutor. Don't read them on the same dashboard. Conversion event for all three: placement-test starts. Lag indicator that matters most: active members at day 14.
+    </p>
+
+    <div class="spend reveal">
+      <div class="spend__row head">
+        <span class="day">day</span>
+        <span>quick math</span>
+        <span>she's a 10</span>
+        <span>tutor</span>
+        <span style="text-align:right;">daily</span>
+      </div>
+      <div class="spend__row"><span class="day">mon</span><span class="num">$50</span><span class="num muted">·</span><span class="num">$80</span><span class="total-num">$130</span></div>
+      <div class="spend__row"><span class="day">tue</span><span class="num">$50</span><span class="num">$40</span><span class="num">$80</span><span class="total-num">$170</span></div>
+      <div class="spend__row"><span class="day">wed</span><span class="num">$100</span><span class="num">$40</span><span class="num">$80</span><span class="total-num">$220</span></div>
+      <div class="spend__row"><span class="day">thu</span><span class="num">$100</span><span class="num">$40</span><span class="num">$80</span><span class="total-num">$220</span></div>
+      <div class="spend__row"><span class="day">fri</span><span class="num">$100</span><span class="num">$40</span><span class="num">$80</span><span class="total-num">$220</span></div>
+      <div class="spend__row"><span class="day">sat</span><span class="num">$80</span><span class="num">$40</span><span class="num">$40</span><span class="total-num">$160</span></div>
+      <div class="spend__row"><span class="day">sun</span><span class="num">$50</span><span class="num">$40</span><span class="num">$40</span><span class="total-num">$130</span></div>
+      <div class="spend__row total"><span class="day">total</span><span class="num">$510</span><span class="num">$240</span><span class="num">$440</span><span class="total-num">~$1,190</span></div>
+    </div>
+
+    <div class="kill reveal">
+      <h3 class="display" style="font-size: 26px; font-weight: 500;">Kill order, Sunday night.</h3>
+      <div class="kill__list">
+        <div class="kill__item"><span class="kill__num">01</span><span class="kill__text"><b>She's a 10 dies first</b> if shares stay under 0.1% in 5 days. Comedy converts indirectly. Flat shares mean the format isn't traveling. Repurpose into organic only.</span></div>
+        <div class="kill__item"><span class="kill__num">02</span><span class="kill__text"><b>Quick Math dies second</b> if no variant clears 2.5% CTR after $400 spend. Mid-funnel ads have to convert. If the founder plus sight-gag doesn't earn the click on warm audiences, the angle is structurally wrong.</span></div>
+        <div class="kill__item"><span class="kill__num">03</span><span class="kill__text"><b>Tutor stays alive longest.</b> Brand-asset value, longer payback. Don't kill before $1,200 spend regardless of CPL. The 60-second cut becomes the LP hero video and onboarding email content even if it doesn't directly convert.</span></div>
+      </div>
+    </div>
+
+    <div class="forced reveal">
+      <span class="lbl">if you told me "pick two"</span>
+      <p class="quote">It's <em>Quick Math</em> and <em>She's a 10.</em> The Tutor ad is what week-2 success buys. Highest production cost, longest payback, fund it out of week-1 wins, not as the entry point.</p>
+    </div>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/TESTING_PLAN.md" target="_blank" rel="noopener">TESTING_PLAN.md</a> · full plan, decision tree, what this plan doesn't capture</p>
+  </div>
+</section>
+
+<!-- ===================== 7. how I hunted ===================== -->
+<section class="s" id="hunt">
+  <div class="wrap">
+    <span class="eyebrow reveal">07 · snowball · how I hunted</span>
+    <h2 class="display reveal">Methodology before candidates. <em>Three bets, not three picks from one search.</em></h2>
+
+    <p class="lede reveal" style="margin-top: 24px; max-width: 820px;">
+      Three hypotheses about where the operator should come from, each represented by the strongest exemplar. A fourth bet was considered and cut. Showing what got cut is showing how I judged.
+    </p>
+
+    <div class="bets reveal">
+      <div class="bet">
+        <span class="bet__name">The Receipts Bet</span>
+        <span class="bet__hyp">Snowball needs <b>a proven multi-million closer</b> who's done the motion at platform scale.</span>
+        <span class="bet__pick"><b>Christian Liquigan</b>Spotter · LA</span>
+      </div>
+      <div class="bet">
+        <span class="bet__name">The Mindshare Bet</span>
+        <span class="bet__hyp">Snowball needs <b>an operator with their own audience</b> who sells the brand publicly while closing privately.</span>
+        <span class="bet__pick"><b>Jack Frimston</b>WHAM · Manchester</span>
+      </div>
+      <div class="bet">
+        <span class="bet__name">The Native Bet</span>
+        <span class="bet__hyp">Snowball needs <b>vertical fluency over years of experience.</b> Someone who's been the mechanic, not the manager.</span>
+        <span class="bet__pick"><b>Nate Nkangwen</b>Content Cash Media · Miami</span>
+      </div>
+      <div class="bet cut">
+        <span class="bet__name">The Rolodex Bet</span>
+        <span class="bet__hyp">Snowball needs day-1 brand-side CMO relationships, not someone who has to build them. <b>Cut.</b> Ryan's brand already pulls Fortune 500 CMOs through inbound.</span>
+        <span class="bet__pick"><b>Justin Adelman</b>cut · see §09</span>
+      </div>
+    </div>
+
+    <h3 class="display reveal" style="margin-top: 80px; font-size: 26px;">The off-org-chart signals I actually searched on</h3>
+    <div class="signals reveal">
+      <div class="signal">
+        <span class="signal__num">01</span>
+        <span class="signal__lbl">verbal tics</span>
+        <p class="signal__txt">Bio sign-offs that don't sound like sales bios. Jack's <em>"remember you will die"</em> was the lock.</p>
+      </div>
+      <div class="signal">
+        <span class="signal__num">02</span>
+        <span class="signal__lbl">public receipts</span>
+        <p class="signal__txt">Operators publishing real revenue numbers in public. Nate's $32k-from-one-video thread was the lock.</p>
+      </div>
+      <div class="signal">
+        <span class="signal__num">03</span>
+        <span class="signal__lbl">platform stat</span>
+        <p class="signal__txt">A single number from inside a hyper-growth platform that proves the motion. Christian's TikTok Auto receipt was the lock.</p>
+      </div>
+      <div class="signal">
+        <span class="signal__num">04</span>
+        <span class="signal__lbl">channel choice</span>
+        <p class="signal__txt">Where the operator actually lives, not where the recruiter happens to find them. Nate gets X DM, not LinkedIn.</p>
+      </div>
+    </div>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/research/07_recruitment_gameplan.md" target="_blank" rel="noopener">research/07_recruitment_gameplan.md</a> · three lenses, Sales Nav recipes, niche behavioral signals, fit rubric</p>
+  </div>
+</section>
+
+<!-- ===================== 8. the three ===================== -->
+<section class="s" id="three">
+  <div class="wrap">
+    <span class="eyebrow reveal">08 · snowball · the three</span>
+    <h2 class="display reveal">Three founder-coded operators. <em>None of them have "Head of Sales at a creator agency" on their CV.</em> Exactly what you asked for.</h2>
+
+    <div class="cand reveal">
+
+      <article class="cand__row">
+        <div class="cand__num">candidate<b>01</b></div>
+        <div class="cand__id">
+          <h3 class="name">Christian Liquigan<em>The Receipts Bet</em></h3>
+          <p class="role"><b>Director, Brand Partnerships</b> at Spotter (LA). Ex-CEO at Stargazer. Ex-TikTok Brand Partnerships, 2020–22.</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/christianliquigan/" target="_blank" rel="noopener">linkedin.com/in/christianliquigan ↗</a>
+            <a href="https://github.com/amikovid/shadowlight/blob/main/research/08_candidate_dossiers.md" target="_blank" rel="noopener">full dossier · §3</a>
+          </div>
+        </div>
+        <div class="cand__detail">
+          <p class="receipt">Took TikTok's Auto vertical from <em>under $50K to multi-million in 18 months.</em> 23% of total Auto revenue in 2021.</p>
+          <p class="why">He didn't inherit a pipeline. He built one. Speaks brand-side and creator-side fluently. Captiv8 plus Spotter for years selling premium services to brand CMOs, TikTok for years selling integration to creators and agencies. Both halves of Snowball's stack.</p>
+          <p class="why">The comp gap is the open question, not the capability. Pitch equity plus autonomy plus creative-shop upside. Frame as a step up in mission, lateral on cash. If he says no, he'll know somebody.</p>
+          <div class="dm">
+            <b>outreach hook · LinkedIn DM:</b> the TikTok Auto receipt in the subject line. Quote his own number back at him. He'll know in two seconds we did real homework. Full DM in <a href="https://github.com/amikovid/shadowlight/blob/main/OUTREACH.md" target="_blank" rel="noopener" style="color: var(--ink); border-color: var(--ink-2);">OUTREACH.md §1</a>.
+          </div>
+        </div>
+      </article>
+
+      <article class="cand__row">
+        <div class="cand__num">candidate<b>02</b></div>
+        <div class="cand__id">
+          <h3 class="name">Jack Frimston<em>The Mindshare Bet</em></h3>
+          <p class="role"><b>Co-Director, We Have a Meeting</b> (Manchester, UK). Author of <em>Sales Is Therapy</em> (May 2025). Co-host of We Have A Meeting Podcast.</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/jackfrimston-5010177b/" target="_blank" rel="noopener">linkedin.com/in/jackfrimston ↗</a>
+            <a href="https://github.com/amikovid/shadowlight/blob/main/research/08_candidate_dossiers.md" target="_blank" rel="noopener">full dossier · §4</a>
+          </div>
+        </div>
+        <div class="cand__detail">
+          <p class="receipt">Co-Director of the UK's <em>2nd Best Sales Agency.</em> Book in print. Four-year-old podcast. Bio ends with <em>"remember you will die."</em></p>
+          <p class="why">The voice is exactly the voice Snowball wants in its sales motion. His bio refuses the word "synergy" and won't pitch you a growth hack. Cultural fit is 5/5, full stop. The vertical is the trade-off. He sells sales services, not creator content.</p>
+          <p class="why">The motion (premium B2B services to brand-side CMOs) translates intact. The audience he's already built is the audience Snowball wants. UK-based gives the shortlist geographic heterogeneity.</p>
+          <div class="dm">
+            <b>outreach hook · LinkedIn DM:</b> the <em>"remember you will die"</em> sign-off in his own bio. Demonstrates we read the whole thing, not just the title. Full DM in <a href="https://github.com/amikovid/shadowlight/blob/main/OUTREACH.md" target="_blank" rel="noopener" style="color: var(--ink); border-color: var(--ink-2);">OUTREACH.md §2</a>.
+          </div>
+        </div>
+      </article>
+
+      <article class="cand__row">
+        <div class="cand__num">candidate<b>03</b></div>
+        <div class="cand__id">
+          <h3 class="name">Nate Nkangwen<em>The Native Bet</em></h3>
+          <p class="role"><b>Founder &amp; CEO, Content Cash Media</b> (Miami). 11.5k X followers, blue-verified. Ex-NRG Esports video editor.</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/nate-nkangwen-774145264/" target="_blank" rel="noopener">linkedin.com/in/nate-nkangwen ↗</a>
+            <a href="https://x.com/natenkgwn" target="_blank" rel="noopener">x.com/natenkgwn ↗</a>
+            <a href="https://github.com/amikovid/shadowlight/blob/main/research/08_candidate_dossiers.md" target="_blank" rel="noopener">full dossier · §5</a>
+          </div>
+        </div>
+        <div class="cand__detail">
+          <p class="receipt">$32k direct revenue from <em>one client video this month.</em> Faze Rug as a client. 150M+ aggregate views in 28 months. $3M+ attributed sales.</p>
+          <p class="why">He's never held a sales title. He's been a 23-year-old founder running scripts, edits, strategy, and closes himself. The bet is vertical fluency over years of experience. He doesn't need to learn YouTube. He lives it.</p>
+          <p class="why">Highest probability of yes (30–40%). Snowball is the version where he stops doing scripts at 2am and runs the motion on a brand-side pipeline he doesn't have to source himself.</p>
+          <div class="dm">
+            <b>outreach hook · X DM (primary):</b> the $32k-from-one-video thread, his most recent piece of mindshare. <em>"Stop doing scripts and edits at 2am"</em> is the line that lands. Full DM in <a href="https://github.com/amikovid/shadowlight/blob/main/OUTREACH.md" target="_blank" rel="noopener" style="color: var(--ink); border-color: var(--ink-2);">OUTREACH.md §3</a>.
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/research/08_candidate_dossiers.md" target="_blank" rel="noopener">research/08_candidate_dossiers.md</a> · full per-candidate dossiers · <a href="https://github.com/amikovid/shadowlight/blob/main/OUTREACH.md" target="_blank" rel="noopener">OUTREACH.md</a> · the actual outreach DMs</p>
+  </div>
+</section>
+
+<!-- ===================== 9. the cut ===================== -->
+<section class="s" id="cut">
+  <div class="wrap">
+    <span class="eyebrow reveal">09 · snowball · the cut</span>
+    <h2 class="display reveal">A fourth bet was considered <em>and cut.</em></h2>
+
+    <p class="lede reveal" style="margin-top: 28px; max-width: 800px;">
+      Justin Adelman represented The Rolodex Bet (day-1 brand-side CMO relationships). He's strong. He didn't make the shortlist. Three reasons, in order.
+    </p>
+
+    <div class="cut-defense reveal">
+      <div class="cut-defense__row">
+        <span class="cut-defense__num">01</span>
+        <p class="cut-defense__txt">
+          <b>Rolodex is the most-replaceable bet for Snowball specifically.</b> Ryan's 14M followers and ex-Jubilee credibility already pull Fortune 500 CMOs through inbound. The salesperson's job is to close what comes in and expand into adjacent verticals, not to bring relationships in their phone. Day-1 relationships are nice. They're not load-bearing for THIS role at THIS stage.
+        </p>
+      </div>
+      <div class="cut-defense__row">
+        <span class="cut-defense__num">02</span>
+        <p class="cut-defense__txt">
+          <b>Justin's relationships are partially redundant with Christian's.</b> Both worked the brand-CMO room. Christian also brings the proven ability to <em>build</em> a multi-million book at platform scale. Justin doesn't add a load-bearing capability the other three don't already cover.
+        </p>
+      </div>
+      <div class="cut-defense__row">
+        <span class="cut-defense__num">03</span>
+        <p class="cut-defense__txt">
+          <b>Justin is the most "obvious-on-paper" of the four.</b> Least off-org-chart. You said: <em>"don't send me obvious org-chart picks."</em> Sending the most-conventional pick of the four against your explicit ask is the one mistake the shortlist couldn't afford.
+        </p>
+      </div>
+    </div>
+
+    <p class="further reveal">further reading: <a href="https://github.com/amikovid/shadowlight/blob/main/research/08_candidate_dossiers.md" target="_blank" rel="noopener">research/08_candidate_dossiers.md §6</a> · the full cut rationale</p>
+  </div>
+</section>
+
+<!-- ===================== 10. loom ===================== -->
+<section class="s loom" id="loom">
+  <div class="wrap">
+    <span class="eyebrow reveal">10 · the loom</span>
+    <h2 class="display reveal">Decks tell you <em>what I did.</em><br />The Loom tells you <em>how I think.</em> Five minutes.</h2>
+
+    <div class="loom__grid">
+      <a class="loom__player reveal" href="#" data-loom>
+        <div class="loom__play" aria-hidden="true"></div>
+        <span class="loom__meta">[LOOM_URL_TBD] · ~5:00</span>
+      </a>
+      <div class="loom__beats reveal">
+        <div class="loom__beat"><span class="n">beat 01</span><span class="t"><b>Volley.</b> Why the live page reads like another AI app, and what changes when you build for the actual offer. The wedge in 60 seconds.</span></div>
+        <div class="loom__beat"><span class="n">beat 02</span><span class="t"><b>Snowball.</b> Three completely different surfacing methods. Three "how I found them" stories. None of the three had the role on their CV.</span></div>
+        <div class="loom__beat"><span class="n">beat 03</span><span class="t"><b>Decision philosophy.</b> Make the call. Cite the receipt. Ship the test.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 11. day 1 ===================== -->
+<section class="s" id="day1">
+  <div class="wrap">
+    <span class="eyebrow reveal">11 · what i'd do on day 1</span>
+    <h2 class="display reveal">If the call goes my way.</h2>
+
+    <div class="day1 reveal">
+      <div class="day1__row">
+        <span class="day1__lbl">volley</span>
+        <p class="day1__txt">At $99 the bottleneck is trust, not awareness. <em>I'd ship this variant against lp3 Monday.</em> Read the data Sunday. Quick Math gets the first $400.</p>
+      </div>
+      <div class="day1__row">
+        <span class="day1__lbl">snowball</span>
+        <p class="day1__txt">Reach out to Christian first, even at low yes-probability. <em>The conversation is worth it whether or not the hire lands.</em> Nate gets the X DM the same day.</p>
+      </div>
+      <div class="day1__row">
+        <span class="day1__lbl">decision philosophy</span>
+        <p class="day1__txt">Make the call. Cite the receipt. Ship the test. <em>Read the data. Adjust.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 12. appendix ===================== -->
+<section class="s" id="appendix">
+  <div class="wrap">
+    <span class="eyebrow reveal">12 · further reading</span>
+    <h2 class="display reveal">The full set.</h2>
+
+    <div class="appx reveal">
+      <div class="appx__group">
+        <h4>thinking · the landing page</h4>
+        <ul>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/LP_RATIONALE.md" target="_blank" rel="noopener">LP_RATIONALE.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/JUSTIFICATION_DOC.md" target="_blank" rel="noopener">JUSTIFICATION_DOC.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/CLAUDE_DESIGN_BRIEF.md" target="_blank" rel="noopener">CLAUDE_DESIGN_BRIEF.md</a></li>
+        </ul>
+      </div>
+      <div class="appx__group">
+        <h4>thinking · the ads</h4>
+        <ul>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/TESTING_PLAN.md" target="_blank" rel="noopener">TESTING_PLAN.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/ADS_CREATIVE_BRIEFS.md" target="_blank" rel="noopener">ADS_CREATIVE_BRIEFS.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/ADS_BRAINDUMP.md" target="_blank" rel="noopener">ADS_BRAINDUMP.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/research/06_meta_ads_research.md" target="_blank" rel="noopener">research/06_meta_ads_research.md</a></li>
+        </ul>
+      </div>
+      <div class="appx__group">
+        <h4>thinking · the candidates</h4>
+        <ul>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/CANDIDATE_SHORTLIST.md" target="_blank" rel="noopener">CANDIDATE_SHORTLIST.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/OUTREACH.md" target="_blank" rel="noopener">OUTREACH.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/research/07_recruitment_gameplan.md" target="_blank" rel="noopener">research/07_recruitment_gameplan.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/research/08_candidate_dossiers.md" target="_blank" rel="noopener">research/08_candidate_dossiers.md</a></li>
+        </ul>
+      </div>
+      <div class="appx__group">
+        <h4>voice + product context</h4>
+        <ul>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/research/01_max_dossier.md" target="_blank" rel="noopener">research/01_max_dossier.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/research/02_volley_recon.md" target="_blank" rel="noopener">research/02_volley_recon.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/research/03_landing_page_synthesis.md" target="_blank" rel="noopener">research/03_landing_page_synthesis.md</a></li>
+          <li><a href="https://github.com/amikovid/shadowlight/blob/main/research/04_challenge_brief.md" target="_blank" rel="noopener">research/04_challenge_brief.md</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="row">
+      <span>kovid bhaduri · for max hertan · may 2026</span>
+      <span>
+        <a href="https://shadowlight-xi.vercel.app/" target="_blank" rel="noopener">live build ↗</a> ·
+        <a href="https://github.com/amikovid/shadowlight" target="_blank" rel="noopener">repo ↗</a> ·
+        <a href="#top">back to top</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!--
+  PLACEHOLDER LIST (for Kovid to find-and-replace before publishing):
+  - [LOOM_URL_TBD]                · §10 The Loom · the player anchor href + caption text
+  - candidate verifications        · per OUTREACH.md "What I'd verify before sending"
+  - 30-day money-back evidence    · LP currently surfaces; verify language matches Volley's actual T&Cs at publish time
+-->
+
+<script>
+  // Reveal-on-scroll
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+
+<script>
+  (function () {
+    function ready() {
+      var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      fontsReady.then(function () {
+        setTimeout(function () { window.print(); }, 600);
+      });
+    }
+    if (document.readyState === 'complete') ready();
+    else window.addEventListener('load', ready);
+  })();
+</script>
+</body>
+</html>

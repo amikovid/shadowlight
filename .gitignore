@@ -1,0 +1,18 @@
+# Local Claude Code settings
+.claude/
+
+# Internal design handoff bundles (raw exports)
+design_pkg/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Logs
+*.log
+
+# Node (in case Vercel's static-build path drops it)
+node_modules/
+.vercel/

@@ -1,0 +1,1537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--
+  Volley landing page variant. Design notes for handoff:
+  (a) Palette: Option 1 (warm light). Going dark just to differentiate from the live page
+      would be vanity. The wedge is the headline; cream lets it breathe and keeps the
+      brand temperature continuous so this reads as Volley grown up, not Volley reskinned.
+  (b) Hero visual: The split. An AI practice card on the left, a tutor card with a
+      fragment of the weekly review on the right. The single review screenshot is more
+      elegant but bets the whole hero on the user reading it. The split states "AI + human"
+      in one glance, which is the 5-second test the brief asks us to pass.
+  (c) Placeholders: tutor photo is a typographic placeholder card (no stock photo
+      committed). Product UI (voice chat, flashcard, audio player) is faithful to the
+      product map but UI only, not real screens.
+  (d) Comparison row Volley loses: price. $99 vs Duolingo $13. The brief asks for honesty.
+-->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Volley. A real tutor and AI practice for adults learning a language.</title>
+<meta name="description" content="A real human tutor plus unlimited AI practice. $99 a month. The reason you'll actually finish this time." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F5F0E5;
+    --bg-2: #EFE8D8;
+    --surface: #FFFFFF;
+    --ink: #1A140F;
+    --ink-2: #6B5E4D;
+    --hairline: rgba(26, 20, 15, 0.12);
+    --hairline-strong: rgba(26, 20, 15, 0.22);
+    --accent: #E04E2C;
+    --accent-press: #C13E1E;
+    --tutor: #3F7A5C;
+    --amber: #D89A2D;
+    --radius: 14px;
+    --radius-lg: 22px;
+    --shadow-soft: 0 1px 0 rgba(26,20,15,0.04), 0 12px 32px -16px rgba(26,20,15,0.18);
+    --shadow-lift: 0 1px 0 rgba(26,20,15,0.04), 0 24px 56px -24px rgba(26,20,15,0.26);
+    --section-pad: clamp(48px, 7vw, 88px);
+    --gutter: clamp(20px, 4vw, 48px);
+    --max: 1200px;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body.no-scroll { overflow: hidden; }
+
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    color: var(--ink-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .display {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-variation-settings: "opsz" 144;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .display em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* ========================== BUTTONS ========================== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+    transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    will-change: transform;
+  }
+  .btn .arrow { transition: transform 220ms ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); box-shadow: var(--shadow-lift); }
+  .btn-primary:active { background: var(--accent-press); transform: translateY(0); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--hairline-strong);
+  }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  .btn-lg { padding: 18px 28px; font-size: 16px; }
+
+  .micro {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    letter-spacing: 0.02em;
+  }
+  .micro .dot { opacity: 0.4; padding: 0 8px; }
+
+  /* ========================== NAV ========================== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in oklab, var(--bg) 80%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+  .nav.scrolled {
+    border-bottom-color: var(--hairline);
+    background: color-mix(in oklab, var(--bg) 92%, transparent);
+  }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .wordmark .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    transform: translateY(7px);
+    margin-left: 1px;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-link {
+    font-size: 14px;
+    color: var(--ink-2);
+    transition: color 160ms ease;
+  }
+  .nav-link:hover { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .nav-links .nav-link { display: none; }
+  }
+
+  /* ========================== HERO ========================== */
+  .hero {
+    padding-top: clamp(40px, 5vw, 64px);
+    padding-bottom: clamp(48px, 6vw, 80px);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  .hero-copy { max-width: 620px; }
+  .hero h1 {
+    margin: 18px 0 24px;
+    font-size: clamp(40px, 5.4vw, 76px);
+    line-height: 1.02;
+    font-weight: 500;
+    max-width: 16ch;
+    letter-spacing: -0.025em;
+  }
+  .hero p.lead {
+    font-size: clamp(17px, 1.3vw, 19px);
+    color: var(--ink-2);
+    max-width: 540px;
+    margin: 0 0 32px;
+    line-height: 1.55;
+  }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero-trust {
+    margin-top: 18px;
+  }
+
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero h1 { font-size: clamp(36px, 8vw, 56px); max-width: none; }
+  }
+
+  /* Shared bar/pill styles (used in loop section + sticky CTA) */
+  .pill {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--bg-2);
+    color: var(--ink-2);
+    letter-spacing: 0.04em;
+  }
+  .review-bars {
+    display: flex; flex-direction: column; gap: 6px; margin-top: auto;
+  }
+  .review-bars .bar {
+    display: grid; grid-template-columns: 80px 1fr 36px; gap: 8px; align-items: center;
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-2);
+  }
+  .review-bars .track {
+    height: 6px; background: rgba(26,20,15,0.08); border-radius: 999px; overflow: hidden;
+  }
+  .review-bars .fill { height: 100%; background: var(--ink); border-radius: 999px; transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .review-bars .bar.up .fill { background: var(--accent); }
+
+  /* ---------- Hero visual: 3-panel split ---------- */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    max-height: 640px;
+  }
+  .stack {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  .panel-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: lowercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pill.live {
+    color: var(--tutor);
+    background: rgba(63, 122, 92, 0.10);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pill.live::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--tutor);
+    border-radius: 50%;
+    animation: pulse-dot 2.4s ease-in-out infinite;
+  }
+
+  /* AI voice chat panel */
+  .panel-voice { grid-column: 1; grid-row: 1 / span 2; }
+  .bubbles { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; flex: 1; min-height: 0; }
+  .bubble {
+    padding: 10px 13px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.4;
+    max-width: 92%;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: bubble-in 600ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  .bubble.me { align-self: flex-end; background: var(--ink); color: var(--bg); border-bottom-right-radius: 4px; }
+  .bubble.ai { align-self: flex-start; background: var(--bg-2); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble.b1 { animation-delay: 800ms; }
+  .bubble.b2 { animation-delay: 1900ms; }
+  .bubble.b3 { animation-delay: 3200ms; }
+  .bubble .corr { color: var(--accent); font-style: italic; font-family: var(--serif); font-weight: 500; }
+  .bubble .nudge { margin-top: 6px; font-size: 11px; color: var(--ink-2); font-family: var(--mono); }
+  @keyframes bubble-in { to { opacity: 1; transform: translateY(0); } }
+
+  .typing {
+    align-self: flex-start;
+    background: var(--bg-2);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+    padding: 10px 12px;
+    display: inline-flex;
+    gap: 4px;
+    opacity: 0;
+    width: fit-content;
+    animation: typing-show 400ms ease 1300ms forwards, typing-hide 250ms ease 1900ms forwards;
+  }
+  .typing i { width: 5px; height: 5px; background: var(--ink-2); border-radius: 50%; animation: typing-bounce 1.2s ease-in-out infinite; }
+  .typing i:nth-child(2) { animation-delay: 0.15s; }
+  .typing i:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes typing-show { to { opacity: 1; } }
+  @keyframes typing-hide { to { opacity: 0; height: 0; padding: 0; margin: 0; } }
+  @keyframes typing-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .voice-input {
+    margin-top: auto;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 6px 6px 6px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--bg);
+  }
+  .voice-input span { font-size: 12px; color: var(--ink-2); }
+  .mic {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: grid;
+    place-items: center;
+    color: white;
+    animation: mic-pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes mic-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(224, 78, 44, 0.45); }
+    50% { box-shadow: 0 0 0 7px rgba(224, 78, 44, 0); }
+  }
+  .waveform { display: flex; gap: 2.5px; align-items: center; height: 16px; }
+  .waveform i {
+    width: 2px; background: var(--accent); border-radius: 2px;
+    animation: wave 1.2s ease-in-out infinite;
+  }
+  .waveform i:nth-child(1) { height: 30%; animation-delay: 0s; }
+  .waveform i:nth-child(2) { height: 65%; animation-delay: 0.08s; }
+  .waveform i:nth-child(3) { height: 50%; animation-delay: 0.16s; }
+  .waveform i:nth-child(4) { height: 85%; animation-delay: 0.24s; }
+  .waveform i:nth-child(5) { height: 40%; animation-delay: 0.32s; }
+  .waveform i:nth-child(6) { height: 70%; animation-delay: 0.40s; }
+  @keyframes wave { 0%, 100% { transform: scaleY(0.4); opacity: 0.7; } 50% { transform: scaleY(1.1); opacity: 1; } }
+
+  /* Tutor card */
+  .panel-tutor {
+    grid-column: 2; grid-row: 1;
+    background: #11221A;
+    color: #E8EFE9;
+    border-color: transparent;
+  }
+  .panel-tutor .panel-label { color: #9DBFA8; }
+  .tutor-row { display: flex; align-items: center; gap: 10px; padding: 4px 0; }
+  .tutor-portrait {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #4E9070, #2C5640);
+  }
+  .tutor-portrait img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+  .tutor-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4E9070, #2C5640);
+    display: grid; place-items: center;
+    color: #E8EFE9;
+    flex-shrink: 0;
+  }
+  .tutor-name { font-weight: 600; font-size: 14px; }
+  .tutor-meta { font-size: 11.5px; color: #9DBFA8; }
+  .tutor-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: #E8EFE9;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 10px;
+  }
+
+  /* Weekly review fragment */
+  .panel-review {
+    grid-column: 2; grid-row: 2;
+    background: var(--bg-2);
+    border-color: transparent;
+  }
+  .review-stat {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .review-stat .pct { color: var(--accent); }
+  .review-line {
+    font-size: 11.5px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 980px) {
+    .hero-visual { aspect-ratio: 4/3; max-height: none; }
+    .stack { gap: 12px; }
+    .bubble { font-size: 13px; }
+  }
+  @media (max-width: 720px) {
+    .hero-visual { aspect-ratio: auto; max-height: none; height: auto; min-height: 0; }
+    .stack {
+      position: static;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .panel-voice { grid-column: 1; grid-row: 1; min-height: 320px; }
+    .panel-tutor { grid-column: 1; grid-row: 2; }
+    .panel-review { grid-column: 1; grid-row: 3; }
+  }
+
+  /* ========================== SECTION HEADER ========================== */
+  section { padding: var(--section-pad) 0; }
+  .section-head {
+    max-width: 760px;
+    margin-bottom: clamp(32px, 4vw, 48px);
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+  }
+  .section-head h2 em { color: var(--accent); font-style: italic; }
+  .section-head p {
+    margin: 18px 0 0;
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 600px;
+  }
+
+  /* ========================== FEAR / STUCK ========================== */
+  .stuck {
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: var(--radius-lg);
+  }
+  .stuck-inner {
+    padding: clamp(48px, 7vw, 96px);
+  }
+  .stuck .eyebrow { color: rgba(245, 240, 229, 0.65); }
+  .stuck h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 3.6vw, 48px);
+    line-height: 1.1;
+    margin: 14px 0 28px;
+    letter-spacing: -0.015em;
+    max-width: 780px;
+  }
+  .stuck h2 em { font-style: italic; color: #F2C76B; }
+  .stuck-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 4vw, 48px);
+    margin-top: clamp(36px, 4vw, 48px);
+    color: rgba(245, 240, 229, 0.92);
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.5vw, 22px);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+  }
+  .stuck-body p { margin: 0; }
+  .stuck-body p strong { color: #FFFFFF; font-weight: 500; font-style: italic; }
+  @media (max-width: 820px) {
+    .stuck-body { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  /* ========================== WEEKLY LOOP ========================== */
+  .loop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .loop-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .loop-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--hairline-strong);
+  }
+  .loop-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 64px;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+  .loop-card h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+  .loop-card p {
+    margin: 0 0 24px;
+    color: var(--ink-2);
+    font-size: 15.5px;
+  }
+  .loop-art {
+    margin-top: auto;
+    background: var(--bg-2);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 13px;
+  }
+
+  /* loop-art variants */
+  .art-rows { display: flex; flex-direction: column; gap: 8px; }
+  .art-row {
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-2);
+  }
+  .art-row .v { color: var(--ink); font-weight: 500; }
+
+  .art-flash {
+    background: var(--surface);
+    border: 1px dashed var(--hairline-strong);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .art-flash .word {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .art-flash .hint {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-2);
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+  }
+
+  .loop-card.tutor {
+    background: #122319;
+    color: #E8EFE9;
+    border-color: transparent;
+  }
+  .loop-card.tutor h3 { color: #FFFFFF; }
+  .loop-card.tutor p { color: #A6BDB0; }
+  .loop-card.tutor .loop-num { color: #F2C76B; }
+  .loop-card.tutor .loop-art {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .loop-card.tutor .review-bars .track { background: rgba(255,255,255,0.08); }
+  .loop-card.tutor .review-bars .fill { background: #F2C76B; }
+  .loop-card.tutor .review-bars .bar.up .fill { background: #6FB991; }
+  .loop-card.tutor .review-bars .bar { color: #A6BDB0; }
+
+  @media (max-width: 900px) {
+    .loop-grid { grid-template-columns: 1fr; }
+    .loop-card { min-height: auto; }
+  }
+
+  /* ========================== COMPARISON ========================== */
+  .compare {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .compare table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .compare th, .compare td {
+    padding: 22px 20px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .compare tr:last-child th, .compare tr:last-child td { border-bottom: none; }
+  .compare thead th {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+    background: var(--bg-2);
+  }
+  .compare thead th.col-volley {
+    background: rgba(224, 78, 44, 0.08);
+    color: var(--accent);
+  }
+  .compare tbody th {
+    font-weight: 500;
+    color: var(--ink);
+    width: 38%;
+    font-family: var(--serif);
+    font-size: 17px;
+    letter-spacing: -0.005em;
+  }
+  .compare td {
+    text-align: center;
+    width: 15.5%;
+    color: var(--ink-2);
+  }
+  .compare td.col-volley {
+    background: rgba(224, 78, 44, 0.04);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .check {
+    display: inline-block;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--bg);
+    line-height: 22px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .col-volley .check { background: var(--accent); color: white; }
+  .x { color: var(--ink-2); opacity: 0.5; font-family: var(--mono); }
+  .compare td.price-row { font-family: var(--mono); font-size: 13px; }
+  .compare-foot {
+    padding: 18px 24px;
+    border-top: 1px solid var(--hairline);
+    background: var(--bg-2);
+    font-size: 13.5px;
+    color: var(--ink-2);
+  }
+  .compare-foot strong { color: var(--ink); font-weight: 600; }
+
+  @media (max-width: 720px) {
+    .compare table, .compare thead, .compare tbody, .compare th, .compare td, .compare tr {
+      display: block;
+    }
+    .compare thead { display: none; }
+    .compare tr { padding: 18px 18px; border-bottom: 1px solid var(--hairline); }
+    .compare tr:last-child { border-bottom: none; }
+    .compare tbody th {
+      width: 100%; padding: 0 0 14px; border: none; font-size: 16px; line-height: 1.3;
+    }
+    .compare td {
+      width: 100%; padding: 8px 0; text-align: left;
+      display: grid; grid-template-columns: 90px 1fr; align-items: center; gap: 12px;
+      border: none;
+      font-size: 14px;
+    }
+    .compare td::before {
+      content: attr(data-label);
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .compare td.col-volley { background: transparent; }
+    .compare td.col-volley::before { color: var(--accent); }
+    .compare td.price-row { font-size: 14px; }
+  }
+
+  /* ========================== INCLUDED ========================== */
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .inc-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: border-color 200ms ease;
+  }
+  .inc-card:hover { border-color: var(--hairline-strong); }
+  .inc-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-2);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .inc-card h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 10px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .inc-card p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  .inc-card .qty {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+  }
+  @media (max-width: 900px) {
+    .included-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ========================== TESTIMONIALS ========================== */
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 4vw, 56px);
+  }
+  .quote {
+    border-top: 1px solid var(--hairline-strong);
+    padding-top: 28px;
+  }
+  .quote-portrait {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 22px;
+    background: var(--bg-2);
+  }
+  .quote-portrait img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    display: block;
+    filter: grayscale(0) saturate(0.92);
+  }
+  .quote q {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--ink);
+    quotes: "\201C" "\201D";
+    display: block;
+  }
+  .quote q::before { content: open-quote; }
+  .quote q::after { content: close-quote; }
+  .quote .attr {
+    margin-top: 22px;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .quote .attr strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 900px) {
+    .quotes { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .faq-side-h {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .faq-side-h em { font-style: italic; color: var(--accent); }
+
+  /* ========================== FAQ ========================== */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+  .faq-list { border-top: 1px solid var(--hairline-strong); }
+  .faq-item { border-bottom: 1px solid var(--hairline-strong); }
+  .faq-q {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    padding: 24px 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .faq-q .icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline-strong);
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 400;
+    transition: transform 240ms ease, background 200ms ease, color 200ms ease;
+    flex-shrink: 0;
+  }
+  .faq-item.open .faq-q .icon {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 320ms ease;
+    color: var(--ink-2);
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+  .faq-a-inner { padding: 0 0 28px; max-width: 640px; }
+  .faq-item.open .faq-a { max-height: 240px; }
+  @media (max-width: 820px) {
+    .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ========================== FINAL CTA ========================== */
+  .final {
+    text-align: center;
+    padding-top: clamp(64px, 8vw, 100px);
+    padding-bottom: clamp(64px, 8vw, 100px);
+  }
+  .final h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 16px auto 32px;
+    max-width: 12ch;
+  }
+  .final h2 em { font-style: italic; color: var(--accent); }
+  .final .lead {
+    max-width: 540px;
+    margin: 0 auto 36px;
+    color: var(--ink-2);
+    font-size: 17px;
+  }
+  .final .micro { display: block; margin-top: 20px; }
+
+  /* ========================== FOOTER ========================== */
+  footer {
+    border-top: 1px solid var(--hairline);
+    padding: 40px 0;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .footer-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ========================== STICKY BOTTOM CTA ========================== */
+  .sticky-cta {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, 120%);
+    z-index: 50;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 999px;
+    padding: 10px 10px 10px 22px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 20px 40px -16px rgba(0,0,0,0.32);
+    transition: transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 240ms ease;
+    opacity: 0;
+    pointer-events: none;
+    max-width: calc(100vw - 32px);
+  }
+  .sticky-cta.visible {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-cta .copy {
+    font-size: 14px;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+  }
+  .sticky-cta .copy strong { font-weight: 600; }
+  .sticky-cta .copy span { font-family: var(--mono); font-size: 11px; opacity: 0.65; }
+  .sticky-cta .go {
+    background: var(--accent);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .sticky-cta .go:hover { background: var(--accent-press); }
+  .sticky-cta .close {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    color: var(--bg);
+    border: 0;
+    font-size: 14px;
+    line-height: 1;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .sticky-cta .close:hover { background: rgba(255,255,255,0.14); }
+
+  @media (max-width: 480px) {
+    .sticky-cta { left: 16px; right: 16px; transform: translateY(120%); width: auto; max-width: none; }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-cta .copy { display: none; }
+    .sticky-cta .go { padding: 12px 18px; }
+  }
+
+  /* ========================== REVEAL ========================== */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    .reveal { opacity: 1; transform: none; }
+    .pill.live::before { animation: none; }
+    .waveform i { animation: none; transform: scaleY(0.7); }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========================== A. NAV ========================== -->
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="wordmark" aria-label="Volley home">
+      volley<span class="dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-link" href="#how">how it works</a>
+      <a class="nav-link" href="#compare">vs others</a>
+      <a class="nav-link" href="#faq">faq</a>
+      <a class="btn btn-primary" href="https://app.getvolley.ai/start">
+        Take the placement test
+        <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ========================== B. HERO ========================== -->
+  <section class="hero" data-screen-label="01 Hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">
+          You don't need another language app. You need a <em>coach who notices</em>.
+        </h1>
+        <p class="lead">
+          $99 a month. Four 30-minute live lessons with a real language tutor, plus unlimited AI practice between them. Your tutor reviews your week and adjusts what's next.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://app.getvolley.ai/start">
+            Take the placement test
+            <svg class="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost btn-lg" href="#how">See the loop</a>
+        </div>
+        <div class="hero-trust micro">
+          <span>2 minutes</span><span class="dot">·</span><span>no card</span><span class="dot">·</span><span><strong style="color:var(--ink); font-weight:600;">30-day money back</strong></span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="stack">
+
+          <!-- AI voice chat -->
+          <div class="panel panel-voice">
+            <div class="panel-label">
+              <span>ai practice · voice</span>
+              <span class="pill">français</span>
+            </div>
+            <div class="bubbles">
+              <div class="bubble me b1">Je voudrais le poulet, s'il vous plaît.</div>
+              <div class="typing"><i></i><i></i><i></i></div>
+              <div class="bubble ai b2">
+                Bien. Et avec ça, vous prenez quelque chose à boire?
+                <div class="nudge">↳ try: <span class="corr">une carafe d'eau</span></div>
+              </div>
+              <div class="bubble me b3">Une carafe d'eau, merci.</div>
+            </div>
+            <div class="voice-input">
+              <span>tap to speak</span>
+              <div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="mic">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="5" y="2" width="4" height="7" rx="2" fill="currentColor"/><path d="M3 7c0 2.2 1.8 4 4 4s4-1.8 4-4M7 11v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutor card -->
+          <div class="panel panel-tutor">
+            <div class="panel-label">
+              <span>your tutor</span>
+              <span class="pill live">live</span>
+            </div>
+            <div class="tutor-row">
+              <div class="tutor-portrait" aria-hidden="true">
+                <img src="img/yvette.png" alt="" />
+              </div>
+              <div>
+                <div class="tutor-name">Yvette M.</div>
+                <div class="tutor-meta">lyon · native french</div>
+              </div>
+            </div>
+            <div class="tutor-note">
+              "Saw the late practice. Push past tense next week."
+            </div>
+          </div>
+
+          <!-- Weekly review fragment -->
+          <div class="panel panel-review">
+            <div class="panel-label">
+              <span>weekly review</span>
+              <span class="pill">sample</span>
+            </div>
+            <div class="review-stat">
+              4 sessions logged. <span class="pct">past tense</span> needs work.
+            </div>
+            <div class="review-bars">
+              <div class="bar up"><span>strongest</span><div class="track"><div class="fill" style="width:82%"></div></div><span>↑</span></div>
+              <div class="bar"><span>steady</span><div class="track"><div class="fill" style="width:58%"></div></div><span>→</span></div>
+              <div class="bar"><span>focus next</span><div class="track"><div class="fill" style="width:28%"></div></div><span>!</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== C. THE STUCK ========================== -->
+  <section data-screen-label="02 The stuck">
+    <div class="container reveal">
+      <div class="stuck">
+        <div class="stuck-inner">
+          <h2>
+            You've tried Duolingo. Twice. You can read the language. You can't <em>speak it</em>.
+          </h2>
+          <div class="stuck-body">
+            <p>You don't have a content problem. <strong>You have a showing-up problem.</strong></p>
+            <p>The streak breaks on a Tuesday. Three weeks later you're back at zero. Nobody noticed.</p>
+            <p><strong>Volley puts a real human on the other side of that.</strong> Same tutor every week. They notice when you skip.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== D. WEEKLY LOOP ========================== -->
+  <section id="how" data-screen-label="03 Weekly loop">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>The weekly loop. <em>Practice, log, adjust.</em></h2>
+      </div>
+
+      <div class="loop-grid">
+        <article class="loop-card reveal">
+          <div class="loop-num">01</div>
+          <h3>Practice in the app.</h3>
+          <p>15-minute audio lesson on your commute. AI voice chat at lunch. Smart flashcards before bed. Whatever fits your day, in 5-minute or 50-minute chunks.</p>
+          <div class="loop-art">
+            <div class="art-rows">
+              <div class="art-row"><span>commute</span><span class="v">audio lesson</span></div>
+              <div class="art-row"><span>lunch</span><span class="v">voice chat</span></div>
+              <div class="art-row"><span>before bed</span><span class="v">flashcards</span></div>
+              <div class="art-row"><span>weekend</span><span class="v">live lesson</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="loop-card reveal">
+          <div class="loop-num">02</div>
+          <h3>AI tracks everything.</h3>
+          <p>Every word you say, every mistake, every card reviewed. Logged automatically. Mistakes from voice chat become next week's flashcards. No journaling required.</p>
+          <div class="loop-art">
+            <div class="art-flash">
+              <div class="word">lundi prochain</div>
+              <div class="hint">flagged: word order ↔ english</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="loop-card tutor reveal">
+          <div class="loop-num">03</div>
+          <h3>Your tutor adjusts your week.</h3>
+          <p>Same tutor, every week. They open your data, find the gap, send a plan.</p>
+          <div class="loop-art" style="font-family:var(--serif); font-style:italic; font-size:15px; line-height:1.45; color:#E8EFE9;">
+            "Two short sessions this week, both on directions. Strong. You're still skipping past tense, so I'm assigning two conversations on it for next week."
+            <div style="font-family:var(--mono); font-size:10px; color:#9DBFA8; letter-spacing:0.06em; margin-top:10px; font-style:normal;">sample weekly note</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== D2. SAME TUTOR (micro) ========================== -->
+  <section data-screen-label="04 Same tutor" style="padding-top: 0;">
+    <div class="container">
+      <div class="reveal" style="max-width: 880px; margin: 0 auto; text-align: center;">
+        <h2 style="font-family:var(--serif); font-weight:500; font-size:clamp(32px,4.4vw,56px); line-height:1.05; letter-spacing:-0.02em; margin:0;">
+          The <em style="font-style:italic; color:var(--accent);">same human</em>, every week.
+        </h2>
+        <p style="margin:18px auto 0; color:var(--ink-2); font-size:17px; max-width:560px;">
+          Most tutoring platforms rotate you through whoever's free. Volley pairs you with one tutor and keeps them. The plan they write in week six knows what you tried in week two.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== E. COMPARISON ========================== -->
+  <section id="compare" data-screen-label="05 Comparison">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>What none of the others do.</h2>
+      </div>
+
+      <div class="compare reveal">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">&nbsp;</th>
+              <th scope="col" class="col-volley">Volley</th>
+              <th scope="col">Duolingo</th>
+              <th scope="col">Speak</th>
+              <th scope="col">Babbel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">A real human reviews your week</th>
+              <td class="col-volley" data-label="Volley"><span class="check">✓</span></td>
+              <td data-label="Duolingo"><span class="x">·</span></td>
+              <td data-label="Speak"><span class="x">·</span></td>
+              <td data-label="Babbel"><span class="x">·</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Open-ended voice practice with AI</th>
+              <td class="col-volley" data-label="Volley"><span class="check">✓</span></td>
+              <td data-label="Duolingo"><span class="x">·</span></td>
+              <td data-label="Speak"><span class="check">✓</span></td>
+              <td data-label="Babbel"><span class="x">·</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Adapts to your specific blindspots, not a fixed curriculum</th>
+              <td class="col-volley" data-label="Volley"><span class="check">✓</span></td>
+              <td data-label="Duolingo"><span class="x">·</span></td>
+              <td data-label="Speak"><span class="x">·</span></td>
+              <td data-label="Babbel"><span class="x">·</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Monthly price</th>
+              <td class="col-volley price-row" data-label="Volley">$99</td>
+              <td class="price-row" data-label="Duolingo">$13</td>
+              <td class="price-row" data-label="Speak">$20</td>
+              <td class="price-row" data-label="Babbel">$15</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="compare-foot">
+          <strong>Yes, we cost more.</strong> $25 a lesson, AI and weekly plan included. The three apps that cost less are the three you've already stopped opening. A tutor costs money. That's the trade.
+          <div class="compare-guarantee" style="margin-top:14px; padding-top:14px; border-top:1px solid var(--hairline);">
+            <strong>30-day money back.</strong> If it's not working, we'd rather refund you than wonder why you stayed.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== F. (price math cut per v5) ========================== -->
+
+  <!-- ========================== G. TESTIMONIALS ========================== -->
+  <section data-screen-label="06 Testimonials">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>What changes when someone is <em>actually paying attention</em>.</h2>
+      </div>
+
+      <div class="quotes">
+        <figure class="quote reveal">
+          <div class="quote-portrait"><img src="img/sarah.png" alt="" /></div>
+          <q>After 3 months I ordered dinner in French and understood the waiter's follow-up question. The weekly lessons are what got me there. I actually showed up every day.</q>
+          <figcaption class="attr">
+            <strong>sarah k.</strong><br/>learning french · 3 months in
+          </figcaption>
+        </figure>
+
+        <figure class="quote reveal">
+          <div class="quote-portrait"><img src="img/erik.png" alt="" /></div>
+          <q>I quit Duolingo twice and Babbel once. The difference here is my tutor messaged me when I skipped Tuesday and gave me a shorter session to get back on track. I haven't missed a week since.</q>
+          <figcaption class="attr">
+            <strong>anders l.</strong><br/>learning swedish · 4 months in
+          </figcaption>
+        </figure>
+
+        <figure class="quote reveal">
+          <div class="quote-portrait"><img src="img/marcus.png" alt="" /></div>
+          <q>The AI practice alone is worth it, but my tutor noticed I kept avoiding past tense and made that my focus for two weeks. That one adjustment unlocked a ton of new conversations.</q>
+          <figcaption class="attr">
+            <strong>marcus t.</strong><br/>learning spanish · 2 months in
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== H. FAQ ========================== -->
+  <section id="faq" data-screen-label="07 FAQ">
+    <div class="container">
+      <div class="faq-grid reveal">
+        <div>
+          <h2 class="faq-side-h">Frequently asked.</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item open">
+            <button class="faq-q" aria-expanded="true">
+              Is the tutor a real person?
+              <span class="icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              Yes. A real human, vetted, paid, with a name and a face. Not a chatbot pretending to be a tutor. You meet them in your first 30-minute lesson and they stay your tutor for as long as you're a member.
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What if I'm a complete beginner?
+              <span class="icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              That's most of who we onboard. The 2-minute placement test calibrates everything: which tutor you're matched with, what your first week looks like, where the AI starts. Day one is built around what you can actually say, not what you should already know.
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How much time does it take each day?
+              <span class="icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              Most members do 15 to 20 minutes a day in the app, plus their 30-minute live lesson once a week. Heavier weeks (a trip coming up, a partner's family meeting you) flex up. Lighter weeks flex down. Your tutor adjusts the plan around your life, not the other way around.
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What if I don't like my tutor?
+              <span class="icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              Tell us in the app, get rematched in a day. No conversation, no pressure to explain. Most members never switch, but the option matters: a tutor you click with is half of why this works.
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What if I'm too busy this month?
+              <span class="icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              Pause for a month from the app, no charge. Your tutor sees the pause and picks up where you left off. We'd rather you skip a month than churn out of guilt.
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Can I cancel anytime?
+              <span class="icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              Yes. Cancel or pause with one click, no questions asked. And if you're not happy within the first 30 days, we'll give you a full refund. We'd rather you try it risk-free than wonder what if.
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== I. FINAL CTA ========================== -->
+  <section class="final" data-screen-label="08 Final CTA">
+    <div class="container">
+      <h2 class="reveal">The reason you'll <em>actually finish</em> this time.</h2>
+      <p class="lead reveal">
+        A real tutor. A real plan. The 2-minute placement test takes longer to read about than to do.
+      </p>
+      <div class="reveal">
+        <a class="btn btn-primary btn-lg" href="https://app.getvolley.ai/start">
+          Take the placement test
+          <svg class="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <span class="micro" style="margin-top:24px;">
+          2 minutes<span class="dot">·</span>no card<span class="dot">·</span>30-day money back<span class="dot">·</span>ships with a real tutor, not a chatbot
+        </span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================== K. FOOTER ========================== -->
+<footer>
+  <div class="container footer-row">
+    <span>© 2026 Volley</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#">privacy</a>
+      <a href="#">terms</a>
+      <a href="#">support</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ========================== J. STICKY BOTTOM CTA ========================== -->
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Get started with Volley">
+  <div class="copy">
+    <strong>2 minutes. No card.</strong>
+    <span>30-day money back</span>
+  </div>
+  <a class="go" href="https://app.getvolley.ai/start">Take the placement test →</a>
+  <button class="close" id="stickyClose" aria-label="Dismiss">
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+</div>
+
+<script>
+  // Nav scrolled state
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Reveal-on-scroll
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+
+  // Sticky bottom CTA: show after weekly loop section, dismissible, sessionStorage-persisted
+  (function () {
+    const cta = document.getElementById('stickyCta');
+    const closeBtn = document.getElementById('stickyClose');
+    const trigger = document.getElementById('how'); // weekly loop section
+    const dismissed = sessionStorage.getItem('volley_sticky_dismissed') === '1';
+    if (dismissed || !trigger) return;
+
+    let visible = false;
+    const setVisible = (v) => {
+      if (v === visible) return;
+      visible = v;
+      cta.classList.toggle('visible', v);
+    };
+
+    const finalCta = document.querySelector('.final');
+
+    const check = () => {
+      const triggerBottom = trigger.getBoundingClientRect().bottom;
+      const finalTop = finalCta ? finalCta.getBoundingClientRect().top : Infinity;
+      // Show once user has scrolled past the weekly loop, hide once final CTA is in view
+      const past = triggerBottom < window.innerHeight * 0.6;
+      const atFinal = finalTop < window.innerHeight * 0.7;
+      setVisible(past && !atFinal);
+    };
+    check();
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+
+    closeBtn.addEventListener('click', () => {
+      sessionStorage.setItem('volley_sticky_dismissed', '1');
+      setVisible(false);
+      window.removeEventListener('scroll', check);
+    });
+  })();
+
+  // Hero voice-chat panel: rotate language sample on page load
+  (function () {
+    const scenarios = [
+      {
+        pill: 'français',
+        b1: "Je voudrais le poulet, s'il vous plaît.",
+        b2: "Bien. Et avec ça, vous prenez quelque chose à boire?",
+        nudgePrefix: '↳ try: ',
+        corr: "une carafe d'eau",
+        b3: "Une carafe d'eau, merci."
+      },
+      {
+        pill: 'italiano',
+        b1: "Vorrei il pollo, per favore.",
+        b2: "Bene. E da bere?",
+        nudgePrefix: '↳ try: ',
+        corr: "dell'acqua frizzante",
+        b3: "Dell'acqua frizzante, grazie."
+      },
+      {
+        pill: 'español',
+        b1: "Quería el pollo, por favor.",
+        b2: "¿Y para beber?",
+        nudgePrefix: '↳ try: ',
+        corr: "agua con gas",
+        b3: "Agua con gas, gracias."
+      }
+    ];
+    const pick = scenarios[Math.floor(Math.random() * scenarios.length)];
+    const pill = document.querySelector('.panel-voice .panel-label .pill');
+    const b1 = document.querySelector('.panel-voice .bubble.b1');
+    const b2 = document.querySelector('.panel-voice .bubble.b2');
+    const b3 = document.querySelector('.panel-voice .bubble.b3');
+    if (!pill || !b1 || !b2 || !b3) return;
+    pill.textContent = pick.pill;
+    b1.textContent = pick.b1;
+    b3.textContent = pick.b3;
+    b2.innerHTML = pick.b2 +
+      '<div class="nudge">' + pick.nudgePrefix +
+      '<span class="corr">' + pick.corr + '</span></div>';
+  })();
+</script>
+
+</body>
+</html>
